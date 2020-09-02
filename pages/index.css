@@ -14,3 +14,11 @@
 @import url(..//blocks/edit-button/edit-button.css);
 @import url(../blocks/author/__info/author__info.css);
 @import url(../blocks/add-button/add-button.css);
+
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__list/cards__list.css);
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__name/card__name.css);
+@import url(../blocks/like-button/like-button.css);

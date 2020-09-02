@@ -8,5 +8,9 @@
     background-image: url(../../images/addButton.svg);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 
+}
+.add-button:hover {
+    opacity: 0.6;
 }

@@ -1,0 +1,10 @@
+.author__name {
+    margin: 3.2vw 0 0 0;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 207%;
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+ 
+}

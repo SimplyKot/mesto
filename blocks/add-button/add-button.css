@@ -1,0 +1,12 @@
+.add-button {
+    margin: 11.25vw 0 0 0;
+    width: 282px;
+    height: 50px;
+    background-color: inherit;
+    border: none;
+    outline: 2px solid #FFFFFF;
+    background-image: url(../../images/addButton.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}

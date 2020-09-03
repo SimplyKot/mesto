@@ -1,5 +1,5 @@
 .profile__text {
-    margin: 3.2vw 0 0 0;
+    margin: 14px 0 0 0;
     display: flex;
     flex-direction: column;
 
@@ -8,5 +8,6 @@
 @media  (min-width: 920px) {
     .profile__text {
     margin: auto 26.65px auto;
+    width: 366px;
     }
 }

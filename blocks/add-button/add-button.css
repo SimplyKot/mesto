@@ -4,11 +4,12 @@
     height: 50px;
     background-color: inherit;
     border: none;
-    outline: 2px solid #FFFFFF;
+    border:  2px solid #FFFFFF;;
     background-image: url(../../images/addButton.svg);
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    padding: 0;
 
 }
 .add-button:hover {
@@ -17,7 +18,7 @@
 
 @media  (min-width: 920px) {
     .add-button {
-        margin: 0 0 auto 0;
+        margin: auto 0 auto auto;
         width: 150px;
     }
 }

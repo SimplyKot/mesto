@@ -1,6 +1,12 @@
 .footer {
-    margin: 48px 19px 36px;
+    margin: 48px calc(19px - 0.03*(100vw - 320px)) 36px;
     font-size: 14px;
     line-height: 17px;
     color: #545454;
+}
+
+@media  (min-width: 920px) {
+    .footer {
+        margin: 66px auto 60px 0;
+    }
 }

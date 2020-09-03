@@ -3,9 +3,10 @@
     border: none;
     box-shadow: none;
     background-image: url(../../images/editButton.svg);
+    background-size: cover;
     width: 18px;
     height: 18px;
-    margin: auto 0;
+    margin: auto 0 auto auto;
     cursor: pointer;
 
 }
@@ -13,8 +14,10 @@
     opacity: 0.6;
 }
 
-@media  (min-width: 920px) {
+@media  (min-width: 921px) {
     .edit-button {
         margin: auto 0 auto 17px;
+        width: 24px;
+        height: 24px;
     }
 }

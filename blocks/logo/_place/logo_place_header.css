@@ -1,4 +1,12 @@
 .logo_place_header {
-    margin: 0 0 0 8.75vw ;
+    margin: 0 0 0 calc(27px - 0.04*(100vw - 320px));
     height: 7.625vw;
+    max-height: 33.4px;
+}
+
+@media  (min-width: 882px) {
+    .logo_place_header {
+        margin: 0;
+        width: 150px;
+    }
 }

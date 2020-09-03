@@ -5,9 +5,10 @@
     align-items: center;
 }
 
-@media  (min-width: 920px) {
+@media  (min-width: 921px) {
     .profile {
         flex-direction: row;
         margin: 40px 0 0;
+        
     }
 }

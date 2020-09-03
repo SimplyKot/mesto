@@ -5,7 +5,11 @@
     border:none;
     box-shadow: none;
     background-color: #FFFFFF;
+    background-size: cover;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
+
 
 }
 .like-button:hover {

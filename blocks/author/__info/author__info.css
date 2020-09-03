@@ -1,3 +1,13 @@
 .author__info {
-    margin: 0;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 auto;
 }
+
+@media  (min-width: 921px) {
+    .author__info {
+        font-size: 18px;
+        line-height: 22px;
+        }
+}
+

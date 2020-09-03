@@ -1,0 +1,8 @@
+.popup__field {
+    margin: 29.47px 0 0 0;
+    height: 27.26px;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid  rgba(0,0,0,.2);
+}

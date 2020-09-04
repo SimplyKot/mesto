@@ -9,7 +9,7 @@
 
 **Краткое описание**
 
-* Этот проект является четвертой проектной работой на курсе веб-разработчика на [Яндекс.Практикум](https://praktikum.yandex.ru/).
+Этот проект является четвертой проектной работой на курсе веб-разработчика на [Яндекс.Практикум](https://praktikum.yandex.ru/).
 
 В этой работе были применены следующие технологии:
 
@@ -22,13 +22,15 @@
 
 Сайт верстался по следующему макету:
 
-* [Макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+[Макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
 
 **Картинки**
 
-* Все изображения взяты на замечательном сайте [unsplash.com](https://unsplash.com/), и последствии оптимизированы с помощью [tinypng.com/](https://tinypng.com/)
+Все изображения взяты на замечательном сайте [unsplash.com](https://unsplash.com/), и последствии оптимизированы с помощью [tinypng.com/](https://tinypng.com/)
 
 
 **Ссылка на gh-pages**
 
-Посмотреть рабочую версию можно здесь: [Mesto](https://simplykot.github.io/mesto/)
+Посмотреть рабочую версию можно здесь:
+
+[Mesto](https://simplykot.github.io/mesto/)

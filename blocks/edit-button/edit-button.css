@@ -3,11 +3,14 @@
     border: none;
     box-shadow: none;
     background-image: url(../../images/editButton.svg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 18px;
     height: 18px;
     margin: auto 0 auto auto;
     cursor: pointer;
+    padding: 0;
 
 }
 .edit-button:hover {
@@ -16,7 +19,6 @@
 
 @media  (min-width: 921px) {
     .edit-button {
-        margin: auto 0 auto 17px;
         width: 24px;
         height: 24px;
     }

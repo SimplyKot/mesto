@@ -1,0 +1,12 @@
+.profile__name-holder {
+    margin: 0;
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media  (min-width: 921px) {
+    .profile__name-holder {
+        width: 100%;
+    }
+}

@@ -9,9 +9,17 @@ const profile = document.querySelector('.profile__text');
 let authorName = profile.querySelector('.author__name');
 let authorInfo = profile.querySelector('.author__info');
 
+
+console.log(authorInfo);
+
+
 function togglePopup() {
     popup.classList.toggle('popup_hidden');
 }
+
+
+
+
 
 console.log({editButton, popup, popup_close, saveButton, authorName, authorInfo});
 

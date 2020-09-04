@@ -1,18 +1,15 @@
 .author__name {
-    margin: 0;
     font-size: 27px;
     font-weight: 500;
-    line-height: 207%;
-    width: 220px;
-    display: flex;
-    justify-content: space-between;
+
+
  
 }
 
 @media  (min-width: 921px) {
     .author__name {
+        margin: 0;
         font-size: 42px;
-        line-height: 133%;
         width: 100%;
         }
 }

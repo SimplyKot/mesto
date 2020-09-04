@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
+    <script src="./scripts/script.js"></script>
 </head>
 <body class="page">
     <div class="page__container">
@@ -78,13 +79,13 @@
             </section>
         </main>
 
-        <section class="popup">
+        <section class="popup popup_hidden">
             <div class="popup__container">
                 <img src="./images/closeButton.svg" alt="Закрыть форму" class="popup_close">
                 <div class="popup__content">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" name="" id="name" class="popup__field">
-                    <input type="text" name="" id="info" class="popup__field">
+                    <input type="text" placeholder="Имя" class="popup__field">
+                    <input type="text" placeholder="Информация" class="popup__field">
                     <button class="save-button">Сохранить</button>
                 </div>
             </div>

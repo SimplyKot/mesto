@@ -1,9 +1,8 @@
 .popup_close {
-    margin: -47px 0 0 calc(430px - 12px);
+    margin: -47px 0 0 calc(100% - 12px) ;
     cursor: pointer;
-    position: absolute;
 }
-
+    
 .popup_close:hover {
     opacity: 0.6;
 }

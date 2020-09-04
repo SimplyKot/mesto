@@ -12,6 +12,8 @@ const authorName = profile.querySelector('.author__name');
 const authorInfo = profile.querySelector('.author__info');
 
 
+
+
 function togglePopup() {
     popup.classList.toggle('popup_hidden');
     inputFields[0].value = authorName.textContent;

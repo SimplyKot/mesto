@@ -1,11 +1,11 @@
-.author__info {
+.profile__info {
     font-size: 14px;
     line-height: 17px;
     margin: 0 auto;
 }
 
 @media  (min-width: 921px) {
-    .author__info {
+    .profile__info {
         font-size: 18px;
         line-height: 22px;
         margin: 16px 0 0 0;

@@ -8,8 +8,8 @@ const inputNameField = popup_form.querySelector('input[name=nameInput]');
 const inputInfoField = popup_form.querySelector('input[name=infoInput]');
 
 const profile = document.querySelector('.profile__text');
-const authorName = profile.querySelector('.author__name');
-const authorInfo = profile.querySelector('.author__info');
+const authorName = profile.querySelector('.profile__name');
+const authorInfo = profile.querySelector('.profile__info');
 
 function togglePopup() {
     if (popup.classList.contains('popup_hidden')) {

@@ -8,6 +8,6 @@
 @media  (min-width: 921px) {
     .profile__text {
     margin: auto 26.65px auto;
-    width: 366px;
+    max-width: 366px;
     }
 }

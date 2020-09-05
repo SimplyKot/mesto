@@ -4,28 +4,27 @@ const popup = document.querySelector('.popup');
 const popup_form = popup.querySelector('.popup__content')
 const popup_close = popup.querySelector('.popup_close');
 const saveButton = popup.querySelector('.save-button');
-const inputFields = popup.querySelectorAll('.popup__field');
-
+const inputNameField = popup_form.querySelector('input[name=nameInput]');
+const inputInfoField = popup_form.querySelector('input[name=infoInput]');
 
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.author__name');
 const authorInfo = profile.querySelector('.author__info');
 
-
-
-
 function togglePopup() {
-    popup.classList.toggle('popup_hidden');
-    inputFields[0].value = authorName.textContent;
-    inputFields[1].value = authorInfo.textContent;
+    if (popup.classList.contains('popup_hidden')) {
+        inputNameField.value = authorName.textContent;
+        inputInfoField.value = authorInfo.textContent;
+    }
+        popup.classList.toggle('popup_hidden');
+    
 }
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    let nameInput = inputFields[0].value;
-    let jobInput = inputFields[1].value;
-    authorName.textContent = nameInput;
-    authorInfo.textContent = jobInput;
+    authorName.textContent = inputNameField.value;
+    authorInfo.textContent = inputInfoField.value;
+    togglePopup();
 }
 
 editButton.addEventListener('click', togglePopup);

@@ -1,0 +1,10 @@
+.popup_opened {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media  (max-width: 547px) {
+    .popup_opened {
+        align-content: center;
+    }
+}

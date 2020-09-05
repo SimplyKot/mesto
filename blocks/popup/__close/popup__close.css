@@ -1,8 +1,0 @@
-.popup_close {
-    margin: -47px 0 0 calc(100% - 12px) ;
-    cursor: pointer;
-}
-    
-.popup_close:hover {
-    opacity: 0.6;
-}

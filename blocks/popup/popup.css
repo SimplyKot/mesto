@@ -7,4 +7,12 @@
     left: 0;
     display: none;
     justify-content: center;
+
+    flex-direction: row;
+    justify-content: center;
+}
+@media  (max-width: 547px) {
+    .popup {
+        align-content: center;
+    }
 }

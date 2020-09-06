@@ -3,8 +3,8 @@ const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const popup_form = popup.querySelector('.popup__content')
 const popup_close = popup.querySelector('.popup__close-button');
-const inputNameField = popup_form.querySelector('input[name=nameInput]');
-const inputInfoField = popup_form.querySelector('input[name=infoInput]');
+const inputNameField = popup_form.querySelector('input[name=name-input]');
+const inputInfoField = popup_form.querySelector('input[name=info-input]');
 
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');

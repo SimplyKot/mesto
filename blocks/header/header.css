@@ -1,6 +1,20 @@
 .header {
-    padding: 28px 0 0 0;
-    height: 17.5vw;
-    max-height: 74px;
+    padding: 8.75vw 0 9.875vw 0;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+/*При ширине экрана 412px нижний паддинг достинает указанного в figme значения*/
+@media  (min-width: 412px) {
+    .header {
+        padding-bottom: 40.6px;
+
+    }
+}
+
+/*При ширине экрана 515px верхний паддинг достинает указанного в figme значения*/
+@media  (min-width: 515px) {
+    .header {
+        padding-top: 45px;
+
+    }
 }

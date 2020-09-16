@@ -3,3 +3,11 @@
   height: 43px;
   width: 43px;
 }
+
+@media (min-width: 768px) {
+  .popup__close-button_size_small {
+    margin: -47px 0 0 calc(100% - 8px);
+    height: 57px;
+    width: 57px;
+  }
+}

@@ -58,11 +58,11 @@ function renderCardList() {
   const cardTemplate = document.querySelector('#card-template').content;
   initialCards.forEach(card => {
   const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.card__delete-button').addEventListener('click', evt => evt.target.closest.remove());
+  cardElement.querySelector('.card__delete-button').addEventListener('click',  evt => evt.target.closest('.card').remove());
   cardElement.querySelector('.card__image').setAttribute('src',card.link);
   cardElement.querySelector('.card__image').setAttribute('alt',card.name);
   cardElement.querySelector('.card__name').textContent=card.name;
-  cardElement.querySelector('.card__like-button').addEventListener('click', evt =>  evt.target.classList.toggle('card__like-button_active'));
+  cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
   cardsList.append(cardElement);
   });
 }

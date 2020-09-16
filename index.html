@@ -29,51 +29,7 @@
             </section> 
             
             <section class="cards">
-                <ul class="cards__list">
-                    <li class="card">
-                        <img src="./images/Kamchatka.jpg" alt="Горы Камчатки" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Камчатка</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/Dunilovo.jpg" alt="Осенняя дорога" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Дунилово</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/Buryatiya.jpg" alt="Синяя лодка" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Бурятия</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/Olkhon_Island_Baikal.jpg" alt="Остров со высоты птичьего полёта" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Остров Ольхон</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/Olkhon_Island_Baikal_winter.jpg" alt="Льды на фоне скалы" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Льды Байкала</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/RosaKhutor.jpg" alt="Облака над холмами" class="card__image">
-                        <div class="card__title">
-                            <h2 class="card__name">Роза-Хутор</h2>
-                            <button type="button" class="card__like-button"></button>
-                        </div>
-                    </li>
-
-                </ul>
+                <ul class="cards__list"></ul>
             </section>
         </main>
 
@@ -89,7 +45,7 @@
             </div>
         </section>        
         
-        <section class="popup popup_opened">
+        <section class="popup">
             <div class="popup__image-container">
                   <div class="popup__image-card">
                   <button type="button" class="popup__close-button popup__close-button_size_small"></button>
@@ -97,9 +53,18 @@
                   <h2 class="popup__image-title">Роза-Хутор</h2>
                   </div>
                 </div>
-        </section>
+        </section> 
 
-
+        <template id="card-template">
+          <li class="card">
+            <button type="button" class="card__delete-button"></button>
+            <img class="card__image">
+            <div class="card__title">
+                <h2 class="card__name"></h2>
+                <button type="button" class="card__like-button"></button>
+            </div>
+        </li>
+        </template>
 
 
     <footer class="footer">

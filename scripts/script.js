@@ -6,10 +6,10 @@ const initialCards = [
     {
         name: 'Москва-река',
         link: 'https://images.unsplash.com/photo-1523509433743-6f42a58221df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80'
-    },
+    },  
     {
-        name: 'Онежское озеро',
-        link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80'
+      name: 'Владивосток',
+      link: 'https://images.unsplash.com/photo-1563941433-b6a094653ed2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=374&q=80'
     },
     {
         name: 'Парк Паанаярви',
@@ -20,8 +20,8 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1561919430-54877acf8107?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80'
     },
     {
-        name: 'Владивосток',
-        link: 'https://images.unsplash.com/photo-1563941433-b6a094653ed2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=374&q=80'
+      name: 'Онежское озеро',
+      link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80'
     }
 ];
 
@@ -36,6 +36,7 @@ const inputInfoField = popup_form.querySelector('input[name=info-input]');
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
+const cardsList = document.querySelector('.cards__list');
 
 function togglePopup() {
     if (!popup.classList.contains('popup_opened')) {
@@ -53,6 +54,19 @@ function formSubmitHandler (evt) {
     togglePopup();
 }
 
+function renderCardList() {
+  const cardTemplate = document.querySelector('#card-template').content;
+  initialCards.forEach(card => {
+    const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.card__image').setAttribute('src',card.link);
+  cardElement.querySelector('.card__image').setAttribute('alt',card.name);
+  cardElement.querySelector('.card__name').textContent=card.name;
+  cardsList.append(cardElement);
+  });
+}
+
 editButton.addEventListener('click', togglePopup);
 popup_close.addEventListener('click', togglePopup);
 popup_form.addEventListener('submit', formSubmitHandler);
+
+renderCardList();

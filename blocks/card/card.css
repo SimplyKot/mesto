@@ -11,5 +11,6 @@
     overflow: hidden;
     border: 0px solid #000000;
     border-radius: 10px;
+    position: relative;
     
 }

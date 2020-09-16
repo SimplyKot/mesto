@@ -1,0 +1,5 @@
+.popup__close-button_size_small {
+  margin: -35px 0 0 calc(100% - 8px);
+  height: 43px;
+  width: 43px;
+}

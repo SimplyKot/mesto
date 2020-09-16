@@ -1,0 +1,6 @@
+.popup__image-card {
+  border: 1px solid orange;
+  margin: 130px 12.5%;
+  max-height: 300px;
+  position: relative;
+}

@@ -38,6 +38,9 @@ const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 const cardsList = document.querySelector('.cards__list');
 
+const popupImage = document.querySelector('.popup-image');
+
+
 function togglePopup() {
     if (!popup.classList.contains('popup_opened')) {
         inputNameField.value = authorName.textContent;
@@ -58,17 +61,33 @@ function renderCardList() {
   const cardTemplate = document.querySelector('#card-template').content;
   initialCards.forEach(card => {
   const cardElement = cardTemplate.cloneNode(true);
+
   cardElement.querySelector('.card__delete-button').addEventListener('click',  evt => evt.target.closest('.card').remove());
   cardElement.querySelector('.card__image').setAttribute('src',card.link);
   cardElement.querySelector('.card__image').setAttribute('alt',card.name);
+
+  cardElement.querySelector('.card__image').addEventListener('click', evt => {
+    const imagePopupTemplate = document.querySelector('#popup-image').content;
+    const imagePopup = imagePopupTemplate.cloneNode(true);
+    imagePopup.querySelector('.popup__close-button').addEventListener('click', evt => {
+      console.log(evt.target.closest('.popup-image__image-container'));
+      evt.target.closest('.popup-image__container').remove();
+      popupImage.classList.toggle('popup-image_opened');
+    });
+    
+    imagePopup.querySelector('.popup-image__image').setAttribute('src',card.link);
+    imagePopup.querySelector('.popup-image__image').setAttribute('alt',card.name);
+    imagePopup.querySelector('.popup-image__image-title').textContent=card.name;
+    console.log(popupImage);
+    console.log(imagePopup);
+    popupImage.append(imagePopup);
+    popupImage.classList.toggle('popup-image_opened');
+  });
+
   cardElement.querySelector('.card__name').textContent=card.name;
   cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
   cardsList.append(cardElement);
   });
-}
-
-const deleteCard = (evt) => {
-  cardsList.querySelector
 }
 
 editButton.addEventListener('click', togglePopup);

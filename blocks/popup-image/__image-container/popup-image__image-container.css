@@ -1,5 +1,4 @@
-.popup__image-container {
-  border: 1px solid red;
+.popup-image__image-container {
   background-color: rgba(0,0,0,.9);
   width: 100%;
 }

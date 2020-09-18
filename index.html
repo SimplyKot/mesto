@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
 
 </head>
+
 <body class="page">
-    <div class="page__container">
-        <header class="header">
-            <a href="#" class="header_logo">
-                <img class="logo logo_place_header" src="./images/logo.svg" alt="Mesto.Russia">
-            </a>
-        </header>
+  <div class="page__container">
+    <header class="header">
+      <a href="#" class="header_logo">
+        <img class="logo logo_place_header" src="./images/logo.svg" alt="Mesto.Russia">
+      </a>
+    </header>
 
-        <main>
-            <section class="profile">
-                <img class="profile__avatar" src="./images/Cousteau.jpg" alt="Фотография автора">
-                <div class="profile__text">
-                    <div class="profile__name-holder">
-                        <h2 class="profile__name">Жак-Ив Кусто</h2>
-                        <button type="button" class="profile__edit-button"></button>
-                    </div>
-                    <p class="profile__info">Исследователь океана</p>
-                </div>
-                <button type="button" class="profile__add-button"></button>
-            </section> 
-            
-            <section class="cards">
-                <ul class="cards__list"></ul>
-            </section>
-        </main>
+    <main>
+      <section class="profile">
+        <img class="profile__avatar" src="./images/Cousteau.jpg" alt="Фотография автора">
+        <div class="profile__text">
+          <div class="profile__name-holder">
+            <h2 class="profile__name">Жак-Ив Кусто</h2>
+            <button type="button" class="profile__edit-button"></button>
+          </div>
+          <p class="profile__info">Исследователь океана</p>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
 
-        <section class="popup">
-            <div class="popup__container">
-                <button type="button" class="popup__close-button"></button>
-                <form class="popup__content" name="edit-author-form">
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" name="name-input" placeholder="Имя" class="popup__field">
-                    <input type="text" name="info-input" placeholder="Информация" class="popup__field">
-                    <button type="submit" class="popup__save-button">Сохранить</button>
-                </form>
-            </div>
-        </section>        
-        
-        <section class="popup">
-            <div class="popup__image-container">
-                  <div class="popup__image-card">
-                  <button type="button" class="popup__close-button popup__close-button_size_small"></button>
-                  <img src="./images/RosaKhutor.jpg" alt="Облака над холмами" class="popup__image">
-                  <h2 class="popup__image-title">Роза-Хутор</h2>
-                  </div>
-                </div>
-        </section> 
+      <section class="cards">
+        <ul class="cards__list"></ul>
+      </section>
+    </main>
 
-        <template id="card-template">
-          <li class="card">
-            <button type="button" class="card__delete-button"></button>
-            <img class="card__image">
-            <div class="card__title">
-                <h2 class="card__name"></h2>
-                <button type="button" class="card__like-button"></button>
-            </div>
-        </li>
-        </template>
+    <section class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <form class="popup__content" name="edit-author-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" name="name-input" placeholder="Имя" class="popup__field">
+          <input type="text" name="info-input" placeholder="Информация" class="popup__field">
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup-image">
+      <template id="popup-image">
+        <div class="popup-image__container">
+          <div class="popup-image__image-card">
+            <button type="button" class="popup__close-button popup__close-button_size_small"></button>
+            <img class="popup-image__image">
+            <h2 class="popup-image__image-title"></h2>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <template id="card-template">
+      <li class="card">
+        <button type="button" class="card__delete-button"></button>
+        <img class="card__image">
+        <div class="card__title">
+          <h2 class="card__name"></h2>
+          <button type="button" class="card__like-button"></button>
+        </div>
+      </li>
+    </template>
 
 
     <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p> 
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    
-    
-    </div>
-    
-    <script src="./scripts/script.js"></script>
+
+
+  </div>
+
+  <script src="./scripts/script.js"></script>
 </body>
+
 </html>

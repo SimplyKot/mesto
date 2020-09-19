@@ -47,7 +47,6 @@ const inputLinkField = popupAdd_form.querySelector('input[name=link-input]');
 
 const popupImage = document.querySelector('.popup-image');
 const popupImage_close = popupImage.querySelector('.popup__close-button');
-console.log(popupImage_close);
 
 function togglePopup() {
     if (!popup.classList.contains('popup_opened')) {
@@ -78,14 +77,14 @@ function formSubmitPlaceHandler (evt) {
   const newCard = {};
   newCard.name = inputPlaceField.value;
   newCard.link = inputLinkField.value;
-  addCard(newCard);
+  addCard(newCard, 'start');
   inputPlaceField.value = '';
   inputLinkField.value = '';
   togglePopupAdd();
 }
 
 
-function addCard(card) {
+function addCard(card, position='end') {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
   
@@ -104,7 +103,13 @@ function addCard(card) {
   
     cardElement.querySelector('.card__name').textContent=card.name;
     cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
-    cardsList.append(cardElement);
+    if (position != 'start') {
+      cardsList.append(cardElement);
+    }
+    else {
+      cardsList.prepend(cardElement);
+    }
+   
 }
 
 function renderCardList() {

@@ -83,6 +83,10 @@ function formSubmitPlaceHandler (evt) {
   togglePopupAdd();
 }
 
+/*Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
+'start' -  добавление в начало списка
+Любоу другое значение - в конец
+*/
 
 function addCard(card, position='end') {
     const cardTemplate = document.querySelector('#card-template').content;

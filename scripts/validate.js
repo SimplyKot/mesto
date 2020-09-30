@@ -9,15 +9,18 @@ console.log(field2);
 
 function showInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  /*inputElement.classList.add('form__input_type_error');*/
   errorElement.textContent = errorMessage;
-};
+  errorElement.classList.add('popup__field-error_visible');
+}
 
 function hideInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorElement.textContent = '';
+  errorElement.classList.remove('popup__field-error_visible');
 };
 
-/*
+
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -34,7 +37,7 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.classList.remove('button_inactive');
   }
 };
-*/
+
 
 function checkInputValidity(formElement, inputElement) {
   if (!inputElement.validity.valid) {

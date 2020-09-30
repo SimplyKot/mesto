@@ -3,4 +3,5 @@
     background-color: #FFF;
     color: #000;
     opacity: .2;
+    pointer-events: none;
 }

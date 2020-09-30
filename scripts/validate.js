@@ -1,11 +1,4 @@
-console.log('Start validation!');
 
-const testform = document.querySelector('.popup__content');
-const field1 = testform.querySelectorAll('.popup__field')[0];
-const field2 = testform.querySelectorAll('.popup__field')[1];
-console.log(testform);
-console.log(field1);
-console.log(field2);
 
 function showInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -30,11 +23,11 @@ function hasInvalidInput(inputList) {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList))
       {
-        buttonElement.classList.add('button_inactive');
+        buttonElement.classList.add('popup__button_disabled');
       }
   else
   {
-    buttonElement.classList.remove('button_inactive');
+    buttonElement.classList.remove('popup__button_disabled');
   }
 };
 
@@ -49,19 +42,26 @@ function checkInputValidity(formElement, inputElement) {
 };
 
 
-field1.addEventListener('input', (evt) => {
-  checkInputValidity(testform, field1);
+
+function enableValidation() {
+
+  console.log('Start validation!');
+
+  const testform = document.querySelector('.popup__content');
+  const fieldList = Array.from(testform.querySelectorAll('.popup__field'));
+  const buttonElement = testform.querySelector('.popup__button');
+
+  fieldList.forEach((field)=>{
+    field.addEventListener('input', function () {
+      checkInputValidity(testform, field);
+      toggleButtonState(fieldList,buttonElement);
+  });
 }
-);
 
-field2.addEventListener('input', (evt) => {
-  checkInputValidity(testform, field2);
+);
 }
-);
 
-
-
-
+enableValidation();
 
 /*
 // включение валидации вызовом enableValidation
@@ -69,7 +69,7 @@ field2.addEventListener('input', (evt) => {
 
 enableValidation({
   formSelector: '.popup__form',
-  inputSelector: '.popup__input',
+  inputSelector: '.popup__field',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',

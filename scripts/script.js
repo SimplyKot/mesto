@@ -135,17 +135,46 @@ popupAddForm.addEventListener('submit', formSubmitPlaceHandler);
 
 popupImage_close.addEventListener('click', togglePopupImage);
 
+//Функция отслеживает все открытые попапы и их хакрывает
+function closeOpenedPopups() {
+  if (popup.classList.contains('popup_opened')) {
+    togglePopup();
+  }
+  if (popupAdd.classList.contains('popup-add_opened')) {
+    togglePopupAdd();
+  }
+  if (popupImage.classList.contains('popup-image_opened')) {
+    togglePopupImage();
+  }
+}
+
+popup.addEventListener('click', evt=> {
+  if (evt.target === evt.currentTarget) 
+  {
+    closeOpenedPopups();
+  }
+});
+
+popupAdd.addEventListener('click', evt=> {
+  if (evt.target === evt.currentTarget) 
+  {
+    closeOpenedPopups();
+  }
+});
+
+popupImage.addEventListener('click', evt=> {
+  if (evt.target === evt.currentTarget) 
+  {
+    closeOpenedPopups();
+  }
+});
+
+
+
+// При нажении на Esc вызывает заврытие всех попапов
 document.addEventListener('keydown', evt => {
   if (evt.key === "Escape") {
-    if (popup.classList.contains('popup_opened')) {
-      togglePopup();
-    }
-    if (popupAdd.classList.contains('popup-add_opened')) {
-      togglePopupAdd();
-    }
-    if (popupImage.classList.contains('popup-image_opened')) {
-      togglePopupImage();
-    }
+    closeOpenedPopups()
   }
 });
 

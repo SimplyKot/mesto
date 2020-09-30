@@ -76,6 +76,7 @@ function formSubmitHandler (evt) {
 }
 
 function formSubmitPlaceHandler (evt) {
+  const submitButton = evt.target.querySelector('.popup__button');
   evt.preventDefault();
   const newCard = {};
   newCard.name = inputPlaceField.value;
@@ -83,6 +84,7 @@ function formSubmitPlaceHandler (evt) {
   addCard(newCard, 'start');
   inputPlaceField.value = '';
   inputLinkField.value = '';
+  submitButton.classList.add('popup__button_disabled');
   togglePopupAdd();
 }
 

@@ -1,18 +1,26 @@
-
-
-function showInputError(formElement, inputElement, errorMessage) {
+function showInputError(formElement, inputElement, errorMessage, inputErrorClass, inputClass) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  /*inputElement.classList.add('form__input_type_error');*/
+  inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__field-error_visible');
+  errorElement.classList.add(inputClass);
 }
 
-function hideInputError(formElement, inputElement, errorMessage) {
+function hideInputError(formElement, inputElement, inputErrorClass, inputClass) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(inputErrorClass);
   errorElement.textContent = '';
-  errorElement.classList.remove('popup__field-error_visible');
+  errorElement.classList.remove(inputClass);
 };
 
+
+function checkInputValidity(formElement, inputElement, inputErrorClass, errorClass) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+  }
+  else {
+    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+  }
+};
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
@@ -32,40 +40,33 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 };
 
 
-function checkInputValidity(formElement, inputElement) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  }
-  else {
-    hideInputError(formElement, inputElement);
-  }
-};
 
 
 
 function enableValidation(params) {
 
-  console.log(params.formSelector);
+  const formList = Array.from(document.querySelectorAll(params.formSelector));
 
-  const testform = document.querySelector(params.formSelector);
-  const fieldList = Array.from(testform.querySelectorAll(params.inputSelector));
-  const buttonElement = testform.querySelector(params.submitButtonSelector);
-
+  formList.forEach((form) => {
+  const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
+  const buttonElement = form.querySelector(params.submitButtonSelector);
+  toggleButtonState(fieldList,buttonElement,params.inactiveButtonClass);
   fieldList.forEach((field)=>{
     field.addEventListener('input', function () {
-      checkInputValidity(testform, field);
+      checkInputValidity(form, field, params.inputErrorClass, params.errorClass);
       toggleButtonState(fieldList,buttonElement,params.inactiveButtonClass);
   });
-}
-
-);
+});
+})
 }
 
 enableValidation({
   formSelector: '.popup__content',
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled'
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__field_type_error',
+  errorClass: 'popup__input_type_error'
 });
 
 /*
@@ -77,7 +78,7 @@ enableValidation({
   inputSelector: '.popup__field', +
   submitButtonSelector: '.popup__button', +
   inactiveButtonClass: 'popup__button_disabled', +
-  inputErrorClass: 'popup__input_type_error',
+  inputErrorClass: 'popup__input_type_error', +
   errorClass: 'popup__error_visible'
 });
 */

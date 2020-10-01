@@ -30,7 +30,7 @@ const addButton = document.querySelector('.profile__add-button');
 
 const authorPopup = document.querySelector('#author');
 const authorPopupForm = authorPopup.querySelector('.popup__content')
-const popupCloseButton = authorPopup.querySelector('.popup__close-button');
+const AuthorPopupCloseButton = authorPopup.querySelector('.popup__close-button');
 const inputNameField = authorPopupForm.querySelector('input[name=name-input]');
 const inputInfoField = authorPopupForm.querySelector('input[name=info-input]');
 
@@ -46,17 +46,15 @@ const inputPlaceField = addPopupForm.querySelector('input[name=place-input]');
 const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
 const imagePopup = document.querySelector('#image');
-const imagePopup_close = imagePopup.querySelector('.popup__close-button');
+const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 const imagePopupPicture = imagePopup.querySelector('.popup-image__image');
 const imagePopupTitle = imagePopup.querySelector('.popup-image__image-title');
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-
 function closeOpenedPopup() {
   togglePopup(document.querySelector('.popup_opened'));
 }
-
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
@@ -107,7 +105,6 @@ function formSubmitPlaceHandler(evt) {
   togglePopup(addPopup);
 }
 
-
 function addCard(card, position = 'end') {
 //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
 //'start' -  добавление в начало списка
@@ -135,7 +132,6 @@ function addCard(card, position = 'end') {
   else {
     cardsList.prepend(cardElement);
   }
-
 }
 
 function renderCardList() {
@@ -143,13 +139,13 @@ function renderCardList() {
 }
 
 editButton.addEventListener('click', evt=>togglePopup(authorPopup));
-popupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
+AuthorPopupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
 addButton.addEventListener('click',evt=>togglePopup(addPopup));
 addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));
 addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
-imagePopup_close.addEventListener('click', evt=>togglePopup(imagePopup));
+imagePopupCloseButton.addEventListener('click', evt=>togglePopup(imagePopup));
 
 renderCardList();

@@ -39,11 +39,11 @@ const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 const cardsList = document.querySelector('.cards__list');
 
-const popupAdd = document.querySelector('#place');
-const popupAddCloseButton = popupAdd.querySelector('.popup__close-button');
-const popupAddForm = popupAdd.querySelector('.popup__content');
-const inputPlaceField = popupAddForm.querySelector('input[name=place-input]');
-const inputLinkField = popupAddForm.querySelector('input[name=link-input]');
+const addPopup = document.querySelector('#place');
+const addPopupCloseButton = addPopup.querySelector('.popup__close-button');
+const addPopupForm = addPopup.querySelector('.popup__content');
+const inputPlaceField = addPopupForm.querySelector('input[name=place-input]');
+const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
 const popupImage = document.querySelector('#image');
 const popupImage_close = popupImage.querySelector('.popup__close-button');
@@ -52,7 +52,7 @@ const popupImageTitle = popupImage.querySelector('.popup-image__image-title');
 
 
 function togglePopup(popupElement) {
-
+console.log(popupElement);
   if (!popupElement.classList.contains('popup_opened')) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
@@ -60,9 +60,11 @@ function togglePopup(popupElement) {
   popupElement.classList.toggle('popup_opened');
 }
 
-function togglePopupAdd() {
-  popupAdd.classList.toggle('popup-add_opened');
+/*
+function toggleaddPopup() {
+  addPopup.classList.toggle('popup-add_opened');
 }
+*/
 
 function togglePopupImage() {
   popupImage.classList.toggle('popup-image_opened');
@@ -86,7 +88,7 @@ function formSubmitPlaceHandler(evt) {
   inputPlaceField.value = '';
   inputLinkField.value = '';
   submitButton.classList.add('popup__button_disabled');
-  togglePopupAdd();
+  toggleaddPopup();
 }
 
 /*Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
@@ -130,9 +132,9 @@ editButton.addEventListener('click', evt=>togglePopup(authorPopup));
 popupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
 popupForm.addEventListener('submit', formAuthorSubmitHandler);
 
-addButton.addEventListener('click', togglePopupAdd);
-popupAddCloseButton.addEventListener('click', togglePopupAdd);
-popupAddForm.addEventListener('submit', formSubmitPlaceHandler);
+addButton.addEventListener('click',evt=>togglePopup(addrPopup));
+addPopupCloseButton.addEventListener('click', evt=>togglePopup(addrPopup));
+addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
 popupImage_close.addEventListener('click', togglePopupImage);
 
@@ -141,8 +143,8 @@ function closeOpenedPopups() {
   if (popup.classList.contains('popup_opened')) {
     togglePopup();
   }
-  if (popupAdd.classList.contains('popup-add_opened')) {
-    togglePopupAdd();
+  if (addPopup.classList.contains('popup-add_opened')) {
+    toggleaddPopup();
   }
   if (popupImage.classList.contains('popup-image_opened')) {
     togglePopupImage();
@@ -156,7 +158,7 @@ authorPopup.addEventListener('click', evt=> {
   }
 });
 
-popupAdd.addEventListener('click', evt=> {
+addPopup.addEventListener('click', evt=> {
   if (evt.target === evt.currentTarget) 
   {
     closeOpenedPopups();

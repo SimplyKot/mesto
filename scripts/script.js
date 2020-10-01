@@ -47,8 +47,8 @@ const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
 const imagePopup = document.querySelector('#image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupPicture = imagePopup.querySelector('.popup-image__image');
-const imagePopupTitle = imagePopup.querySelector('.popup-image__image-title');
+const imagePopupPicture = imagePopup.querySelector('.popup__image');
+const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
 
 const cardTemplate = document.querySelector('#card-template').content;
 

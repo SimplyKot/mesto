@@ -1,4 +1,4 @@
-.popup-image__image-card {
+.popup__image-card {
   margin: calc(135px - 0.1*(100vw - 320px)) 12.5%;
   /*max-height: 300px;*/
   max-width: 816px;
@@ -6,13 +6,13 @@
 }
 
 @media (min-width: 768px) {
-  .popup-image__image-card {
+  .popup__image-card {
     margin: 90px 12.5%;
   }
 }
 
 @media (min-width: 1080px) {
-  .popup-image__image-card {
+  .popup__image-card {
     margin: 90px auto;
   }
 }

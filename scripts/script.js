@@ -53,25 +53,25 @@ const imagePopupTitle = imagePopup.querySelector('.popup-image__image-title');
 const cardTemplate = document.querySelector('#card-template').content;
 
 
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    togglePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+
 function togglePopup(popupElement) {
-console.log(popupElement);
   if (!popupElement.classList.contains('popup_opened')) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
+    document.addEventListener('keydown',closeByEscape);
+  }
+  else
+  {
+    document.removeEventListener('keydown', closeByEscape);
   }
   popupElement.classList.toggle('popup_opened');
 }
-
-/*
-function toggleaddPopup() {
-  addPopup.classList.toggle('popup-add_opened');
-}
-*/
-
-function toggleimagePopup() {
-  imagePopup.classList.toggle('popup-image_opened');
-}
-
 
 function formAuthorSubmitHandler(evt) {
   evt.preventDefault();
@@ -93,12 +93,11 @@ function formSubmitPlaceHandler(evt) {
   togglePopup(addPopup);
 }
 
-/*Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
-'start' -  добавление в начало списка
-Любоу другое значение - в конец
-*/
 
 function addCard(card, position = 'end') {
+//Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
+//'start' -  добавление в начало списка
+//Любую другое значение - в конец
   
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
@@ -108,7 +107,6 @@ function addCard(card, position = 'end') {
   cardImage.setAttribute('alt', card.name);
 
   cardImage.addEventListener('click', () => {
-
     imagePopupPicture.setAttribute('src', card.link);
     imagePopupPicture.setAttribute('alt', card.name);
     imagePopupTitle.textContent = card.name;
@@ -139,51 +137,5 @@ addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));
 addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
 imagePopup_close.addEventListener('click', evt=>togglePopup(imagePopup));
-
-//Функция отслеживает все открытые попапы и их хакрывает
-function closeOpenedPopups() {
-  /*
-  if (popup.classList.contains('popup_opened')) {
-    togglePopup();
-  }
-  if (addPopup.classList.contains('popup-add_opened')) {
-    toggleaddPopup();
-  }
-  if (imagePopup.classList.contains('popup-image_opened')) {
-    toggleimagePopup();
-  }
-  */
-  console.log('colse popup!!!');
-}
-
-authorPopup.addEventListener('click', evt=> {
-  if (evt.target === evt.currentTarget) 
-  {
-    closeOpenedPopups();
-  }
-});
-
-addPopup.addEventListener('click', evt=> {
-  if (evt.target === evt.currentTarget) 
-  {
-    closeOpenedPopups();
-  }
-});
-
-imagePopup.addEventListener('click', evt=> {
-  if (evt.target === evt.currentTarget) 
-  {
-    closeOpenedPopups();
-  }
-});
-
-
-
-// При нажении на Esc вызывает заврытие всех попапов
-document.addEventListener('keydown', evt => {
-  if (evt.key === "Escape") {
-    closeOpenedPopups()
-  }
-});
 
 renderCardList();

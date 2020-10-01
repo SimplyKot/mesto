@@ -28,7 +28,7 @@ const initialCards = [
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
-const popup = document.querySelector('.popup');
+const popup = document.querySelector('#author');
 const popupForm = popup.querySelector('.popup__content')
 const popupCloseButton = popup.querySelector('.popup__close-button');
 const inputNameField = popupForm.querySelector('input[name=name-input]');
@@ -39,19 +39,19 @@ const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 const cardsList = document.querySelector('.cards__list');
 
-const popupAdd = document.querySelector('.popup-add');
+const popupAdd = document.querySelector('#place');
 const popupAddCloseButton = popupAdd.querySelector('.popup__close-button');
 const popupAddForm = popupAdd.querySelector('.popup__content');
 const inputPlaceField = popupAddForm.querySelector('input[name=place-input]');
 const inputLinkField = popupAddForm.querySelector('input[name=link-input]');
 
-const popupImage = document.querySelector('.popup-image');
+const popupImage = document.querySelector('#image');
 const popupImage_close = popupImage.querySelector('.popup__close-button');
 const popupImagePicture = popupImage.querySelector('.popup-image__image');
 const popupImageTitle = popupImage.querySelector('.popup-image__image-title');
 
 
-function togglePopup() {
+function togglePopup(popupElement = undefined) {
   if (!popup.classList.contains('popup_opened')) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;

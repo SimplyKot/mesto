@@ -29,10 +29,10 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
 const authorPopup = document.querySelector('#author');
-const popupForm = authorPopup.querySelector('.popup__content')
+const authorPopupForm = authorPopup.querySelector('.popup__content')
 const popupCloseButton = authorPopup.querySelector('.popup__close-button');
-const inputNameField = popupForm.querySelector('input[name=name-input]');
-const inputInfoField = popupForm.querySelector('input[name=info-input]');
+const inputNameField = authorPopupForm.querySelector('input[name=name-input]');
+const inputInfoField = authorPopupForm.querySelector('input[name=info-input]');
 
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
@@ -53,9 +53,21 @@ const imagePopupTitle = imagePopup.querySelector('.popup-image__image-title');
 const cardTemplate = document.querySelector('#card-template').content;
 
 
+function closeOpenedPopup() {
+  togglePopup(document.querySelector('.popup_opened'));
+}
+
+
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
-    togglePopup(document.querySelector('.popup_opened'));
+    closeOpenedPopup()
+  }
+}
+
+function closeByOverlayClick(evt) {
+  if (evt.target===evt.currentTarget)
+  {
+    closeOpenedPopup();
   }
 }
 
@@ -65,10 +77,12 @@ function togglePopup(popupElement) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
     document.addEventListener('keydown',closeByEscape);
+    popupElement.addEventListener('click',closeByOverlayClick);
   }
   else
   {
     document.removeEventListener('keydown', closeByEscape);
+    popupElement.removeEventListener('click',closeByOverlayClick);
   }
   popupElement.classList.toggle('popup_opened');
 }
@@ -130,7 +144,7 @@ function renderCardList() {
 
 editButton.addEventListener('click', evt=>togglePopup(authorPopup));
 popupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
-popupForm.addEventListener('submit', formAuthorSubmitHandler);
+authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
 addButton.addEventListener('click',evt=>togglePopup(addPopup));
 addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));

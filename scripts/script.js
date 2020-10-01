@@ -28,9 +28,9 @@ const initialCards = [
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
-const popup = document.querySelector('#author');
-const popupForm = popup.querySelector('.popup__content')
-const popupCloseButton = popup.querySelector('.popup__close-button');
+const authorPopup = document.querySelector('#author');
+const popupForm = authorPopup.querySelector('.popup__content')
+const popupCloseButton = authorPopup.querySelector('.popup__close-button');
 const inputNameField = popupForm.querySelector('input[name=name-input]');
 const inputInfoField = popupForm.querySelector('input[name=info-input]');
 
@@ -51,12 +51,13 @@ const popupImagePicture = popupImage.querySelector('.popup-image__image');
 const popupImageTitle = popupImage.querySelector('.popup-image__image-title');
 
 
-function togglePopup(popupElement = undefined) {
-  if (!popup.classList.contains('popup_opened')) {
+function togglePopup(popupElement) {
+
+  if (!popupElement.classList.contains('popup_opened')) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
   }
-  popup.classList.toggle('popup_opened');
+  popupElement.classList.toggle('popup_opened');
 }
 
 function togglePopupAdd() {
@@ -68,11 +69,11 @@ function togglePopupImage() {
 }
 
 
-function formSubmitHandler(evt) {
+function formAuthorSubmitHandler(evt) {
   evt.preventDefault();
   authorName.textContent = inputNameField.value;
   authorInfo.textContent = inputInfoField.value;
-  togglePopup();
+  togglePopup(authorPopup);
 }
 
 function formSubmitPlaceHandler(evt) {
@@ -125,9 +126,9 @@ function renderCardList() {
   initialCards.forEach(addCard);
 }
 
-editButton.addEventListener('click', togglePopup);
-popupCloseButton.addEventListener('click', togglePopup);
-popupForm.addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', evt=>togglePopup(authorPopup));
+popupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
+popupForm.addEventListener('submit', formAuthorSubmitHandler);
 
 addButton.addEventListener('click', togglePopupAdd);
 popupAddCloseButton.addEventListener('click', togglePopupAdd);
@@ -148,7 +149,7 @@ function closeOpenedPopups() {
   }
 }
 
-popup.addEventListener('click', evt=> {
+authorPopup.addEventListener('click', evt=> {
   if (evt.target === evt.currentTarget) 
   {
     closeOpenedPopups();

@@ -75,12 +75,12 @@ function togglePopup(popupElement) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
     document.addEventListener('keydown',closeByEscape);
-    popupElement.addEventListener('click',closeByOverlayClick);
+    popupElement.addEventListener('mousedown',closeByOverlayClick);
   }
   else
   {
     document.removeEventListener('keydown', closeByEscape);
-    popupElement.removeEventListener('click',closeByOverlayClick);
+    popupElement.removeEventListener('mousedown',closeByOverlayClick);
   }
   popupElement.classList.toggle('popup_opened');
 }

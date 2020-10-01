@@ -45,10 +45,12 @@ const addPopupForm = addPopup.querySelector('.popup__content');
 const inputPlaceField = addPopupForm.querySelector('input[name=place-input]');
 const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
-const popupImage = document.querySelector('#image');
-const popupImage_close = popupImage.querySelector('.popup__close-button');
-const popupImagePicture = popupImage.querySelector('.popup-image__image');
-const popupImageTitle = popupImage.querySelector('.popup-image__image-title');
+const imagePopup = document.querySelector('#image');
+const imagePopup_close = imagePopup.querySelector('.popup__close-button');
+const imagePopupPicture = imagePopup.querySelector('.popup-image__image');
+const imagePopupTitle = imagePopup.querySelector('.popup-image__image-title');
+
+const cardTemplate = document.querySelector('#card-template').content;
 
 
 function togglePopup(popupElement) {
@@ -66,8 +68,8 @@ function toggleaddPopup() {
 }
 */
 
-function togglePopupImage() {
-  popupImage.classList.toggle('popup-image_opened');
+function toggleimagePopup() {
+  imagePopup.classList.toggle('popup-image_opened');
 }
 
 
@@ -88,7 +90,7 @@ function formSubmitPlaceHandler(evt) {
   inputPlaceField.value = '';
   inputLinkField.value = '';
   submitButton.classList.add('popup__button_disabled');
-  toggleaddPopup();
+  togglePopup(addPopup);
 }
 
 /*Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
@@ -97,7 +99,7 @@ function formSubmitPlaceHandler(evt) {
 */
 
 function addCard(card, position = 'end') {
-  const cardTemplate = document.querySelector('#card-template').content;
+  
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
 
@@ -107,10 +109,10 @@ function addCard(card, position = 'end') {
 
   cardImage.addEventListener('click', () => {
 
-    popupImagePicture.setAttribute('src', card.link);
-    popupImagePicture.setAttribute('alt', card.name);
-    popupImageTitle.textContent = card.name;
-    togglePopupImage();
+    imagePopupPicture.setAttribute('src', card.link);
+    imagePopupPicture.setAttribute('alt', card.name);
+    imagePopupTitle.textContent = card.name;
+    togglePopup(imagePopup);
   });
 
   cardElement.querySelector('.card__name').textContent = card.name;
@@ -136,19 +138,22 @@ addButton.addEventListener('click',evt=>togglePopup(addPopup));
 addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));
 addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
-popupImage_close.addEventListener('click', togglePopupImage);
+imagePopup_close.addEventListener('click', evt=>togglePopup(imagePopup));
 
 //Функция отслеживает все открытые попапы и их хакрывает
 function closeOpenedPopups() {
+  /*
   if (popup.classList.contains('popup_opened')) {
     togglePopup();
   }
   if (addPopup.classList.contains('popup-add_opened')) {
     toggleaddPopup();
   }
-  if (popupImage.classList.contains('popup-image_opened')) {
-    togglePopupImage();
+  if (imagePopup.classList.contains('popup-image_opened')) {
+    toggleimagePopup();
   }
+  */
+  console.log('colse popup!!!');
 }
 
 authorPopup.addEventListener('click', evt=> {
@@ -165,7 +170,7 @@ addPopup.addEventListener('click', evt=> {
   }
 });
 
-popupImage.addEventListener('click', evt=> {
+imagePopup.addEventListener('click', evt=> {
   if (evt.target === evt.currentTarget) 
   {
     closeOpenedPopups();

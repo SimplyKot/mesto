@@ -132,8 +132,8 @@ editButton.addEventListener('click', evt=>togglePopup(authorPopup));
 popupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
 popupForm.addEventListener('submit', formAuthorSubmitHandler);
 
-addButton.addEventListener('click',evt=>togglePopup(addrPopup));
-addPopupCloseButton.addEventListener('click', evt=>togglePopup(addrPopup));
+addButton.addEventListener('click',evt=>togglePopup(addPopup));
+addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));
 addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
 popupImage_close.addEventListener('click', togglePopupImage);

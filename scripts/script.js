@@ -63,8 +63,7 @@ function closeByEscape(evt) {
 }
 
 function closeByOverlayClick(evt) {
-  if (evt.target===evt.currentTarget)
-  {
+  if (evt.target === evt.currentTarget) {
     closeOpenedPopup();
   }
 }
@@ -74,13 +73,12 @@ function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
     inputNameField.value = authorName.textContent;
     inputInfoField.value = authorInfo.textContent;
-    document.addEventListener('keydown',closeByEscape);
-    popupElement.addEventListener('mousedown',closeByOverlayClick);
+    document.addEventListener('keydown', closeByEscape);
+    popupElement.addEventListener('mousedown', closeByOverlayClick);
   }
-  else
-  {
+  else {
     document.removeEventListener('keydown', closeByEscape);
-    popupElement.removeEventListener('mousedown',closeByOverlayClick);
+    popupElement.removeEventListener('mousedown', closeByOverlayClick);
   }
   popupElement.classList.toggle('popup_opened');
 }
@@ -106,10 +104,10 @@ function formSubmitPlaceHandler(evt) {
 }
 
 function addCard(card, position = 'end') {
-//Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
-//'start' -  добавление в начало списка
-//Любую другое значение - в конец
-  
+  //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
+  //'start' -  добавление в начало списка
+  //Любую другое значение - в конец
+
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
 
@@ -138,14 +136,14 @@ function renderCardList() {
   initialCards.forEach(addCard);
 }
 
-editButton.addEventListener('click', evt=>togglePopup(authorPopup));
-AuthorPopupCloseButton.addEventListener('click', evt=>togglePopup(authorPopup));
+editButton.addEventListener('click', evt => togglePopup(authorPopup));
+AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
-addButton.addEventListener('click',evt=>togglePopup(addPopup));
-addPopupCloseButton.addEventListener('click', evt=>togglePopup(addPopup));
+addButton.addEventListener('click', evt => togglePopup(addPopup));
+addPopupCloseButton.addEventListener('click', evt => togglePopup(addPopup));
 addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
-imagePopupCloseButton.addEventListener('click', evt=>togglePopup(imagePopup));
+imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
 renderCardList();

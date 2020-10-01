@@ -25,16 +25,14 @@ function checkInputValidity(formElement, inputElement, inputErrorClass, errorCla
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-  }); 
-  }
+  });
+}
 
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  if (hasInvalidInput(inputList))
-      {
-        buttonElement.classList.add(inactiveButtonClass);
-      }
-  else
-  {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(inactiveButtonClass);
+  }
+  else {
     buttonElement.classList.remove(inactiveButtonClass);
   }
 };
@@ -48,16 +46,16 @@ function enableValidation(params) {
   const formList = Array.from(document.querySelectorAll(params.formSelector));
 
   formList.forEach((form) => {
-  const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
-  const buttonElement = form.querySelector(params.submitButtonSelector);
-  toggleButtonState(fieldList,buttonElement,params.inactiveButtonClass);
-  fieldList.forEach((field)=>{
-    field.addEventListener('input', function () {
-      checkInputValidity(form, field, params.inputErrorClass, params.errorClass);
-      toggleButtonState(fieldList,buttonElement,params.inactiveButtonClass);
-  });
-});
-})
+    const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
+    const buttonElement = form.querySelector(params.submitButtonSelector);
+    toggleButtonState(fieldList, buttonElement, params.inactiveButtonClass);
+    fieldList.forEach((field) => {
+      field.addEventListener('input', function () {
+        checkInputValidity(form, field, params.inputErrorClass, params.errorClass);
+        toggleButtonState(fieldList, buttonElement, params.inactiveButtonClass);
+      });
+    });
+  })
 }
 
 enableValidation({

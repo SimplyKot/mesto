@@ -1,24 +1,24 @@
-function showInputError(formElement, inputElement, errorMessage, inputErrorClass, inputClass) {
+function showInputError(formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add(inputErrorClass);
+  inputElement.classList.add(params.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(inputClass);
+  errorElement.classList.add(params.inputClass);
 }
 
-function hideInputError(formElement, inputElement, inputErrorClass, inputClass) {
+function hideInputError(formElement, inputElement, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
+  inputElement.classList.remove(params.inputErrorClass);
   errorElement.textContent = '';
-  errorElement.classList.remove(inputClass);
+  errorElement.classList.remove(params.inputClass);
 };
 
 
-function checkInputValidity(formElement, inputElement, inputErrorClass, errorClass) {
+function checkInputValidity(formElement, inputElement, params) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+    showInputError(formElement, inputElement, inputElement.validationMessage, params);
   }
   else {
-    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+    hideInputError(formElement, inputElement, params);
   }
 };
 
@@ -28,12 +28,12 @@ function hasInvalidInput(inputList) {
   });
 }
 
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
+const toggleButtonState = (inputList, buttonElement, params) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.classList.add(params.inactiveButtonClass);
   }
   else {
-    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.classList.remove(params.inactiveButtonClass);
   }
 };
 
@@ -48,11 +48,11 @@ function enableValidation(params) {
   formList.forEach((form) => {
     const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
     const buttonElement = form.querySelector(params.submitButtonSelector);
-    toggleButtonState(fieldList, buttonElement, params.inactiveButtonClass);
+    toggleButtonState(fieldList, buttonElement, params);
     fieldList.forEach((field) => {
       field.addEventListener('input', function () {
-        checkInputValidity(form, field, params.inputErrorClass, params.errorClass);
-        toggleButtonState(fieldList, buttonElement, params.inactiveButtonClass);
+        checkInputValidity(form, field, params);
+        toggleButtonState(fieldList, buttonElement, params);
       });
     });
   })

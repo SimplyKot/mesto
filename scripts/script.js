@@ -75,8 +75,11 @@ function closeByOverlayClick(evt) {
 
 function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
-    inputNameField.value = authorName.textContent;
-    inputInfoField.value = authorInfo.textContent;
+    if(popupElement.id === 'author') {
+      inputNameField.value = authorName.textContent;
+      inputInfoField.value = authorInfo.textContent;
+    }
+
     document.addEventListener('keydown', closeByEscape);
     popupElement.addEventListener('mousedown', closeByOverlayClick);
     оpenPopup(popupElement);

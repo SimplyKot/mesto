@@ -72,14 +72,16 @@ function closeByOverlayClick(evt) {
   }
 }
 
+function setAuthorFields() {
+  inputNameField.value = authorName.textContent;
+  inputInfoField.value = authorInfo.textContent;
+}
 
 function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
-    if(popupElement.id === 'author') {
-      inputNameField.value = authorName.textContent;
-      inputInfoField.value = authorInfo.textContent;
-    }
-
+    if (popupElement.id === 'author') {
+      setAuthorFields(popupElement)
+    };
     document.addEventListener('keydown', closeByEscape);
     popupElement.addEventListener('mousedown', closeByOverlayClick);
     оpenPopup(popupElement);

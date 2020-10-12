@@ -1,5 +1,3 @@
-const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
-console.log(formList);
 
 function showInputError(formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -40,15 +38,7 @@ const toggleButtonState = (inputList, buttonElement, params) => {
   }
 };
 
-
-
-
-
-function enableValidation(params) {
-
-  
-
-  formList.forEach((form) => {
+function enableValidation(params,form) {
     const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
     const buttonElement = form.querySelector(params.submitButtonSelector);
     toggleButtonState(fieldList, buttonElement, params);
@@ -58,10 +48,10 @@ function enableValidation(params) {
         toggleButtonState(fieldList, buttonElement, params);
       });
     });
-  })
 }
 
-formList.forEach((form)=>{
-  enableValidation(validationConfig, form);
-});
+
+
+
+
 

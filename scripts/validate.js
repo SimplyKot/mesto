@@ -1,4 +1,4 @@
-class Validator {
+export default class Validator {
   constructor (params, form) {
     this._form = form;
     this._params = params;
@@ -57,7 +57,6 @@ enableValidation() {
       });
     });
 }
-
 }
 
 

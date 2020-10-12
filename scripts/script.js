@@ -1,4 +1,4 @@
-import Validator from URL()
+import Validator from './validate.js'
 
 const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
 const editButton = document.querySelector('.profile__edit-button');

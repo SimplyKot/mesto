@@ -1,5 +1,3 @@
-const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
-console.log(formList);
 
 function showInputError(formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -61,7 +59,8 @@ function enableValidation(params) {
   })
 }
 
-formList.forEach((form)=>{
-  enableValidation(validationConfig, form);
-});
+
+
+
+
 

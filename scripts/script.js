@@ -1,3 +1,4 @@
+const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
@@ -131,3 +132,8 @@ addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
 renderCardList();
+
+
+formList.forEach((form)=>{
+  enableValidation(validationConfig, form);
+});

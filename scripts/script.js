@@ -135,5 +135,6 @@ renderCardList();
 
 
 formList.forEach((form)=>{
-  enableValidation(validationConfig, form);
+  const formValidator = new Validator(validationConfig, form);
+  formValidator.enableValidation();
 });

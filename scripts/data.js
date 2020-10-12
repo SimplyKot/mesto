@@ -25,7 +25,7 @@ const initialCards = [
     }
   ];
 
-const validateConfig = {
+const validationConfig = {
     formSelector: '.popup__content',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__button',

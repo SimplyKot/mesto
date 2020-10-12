@@ -1,3 +1,6 @@
+const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
+console.log(formList);
+
 function showInputError(formElement, inputElement, errorMessage, params) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(params.inputErrorClass);
@@ -43,7 +46,7 @@ const toggleButtonState = (inputList, buttonElement, params) => {
 
 function enableValidation(params) {
 
-  const formList = Array.from(document.querySelectorAll(params.formSelector));
+  
 
   formList.forEach((form) => {
     const fieldList = Array.from(form.querySelectorAll(params.inputSelector));
@@ -58,4 +61,7 @@ function enableValidation(params) {
   })
 }
 
+formList.forEach((form)=>{
+  enableValidation(validationConfig, form);
+});
 

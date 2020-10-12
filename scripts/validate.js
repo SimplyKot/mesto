@@ -31,11 +31,13 @@ function hasInvalidInput(inputList) {
 const toggleButtonState = (inputList, buttonElement, params) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(params.inactiveButtonClass);
+    buttonElement.setAttribute('disabled','disabled');
   }
   else {
     buttonElement.classList.remove(params.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
-};
+}
 
 
 

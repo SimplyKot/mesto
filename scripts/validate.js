@@ -38,11 +38,13 @@ _hasInvalidInput(inputList) {
 _toggleButtonState = (inputList, buttonElement, params) => {
   if (this._hasInvalidInput(inputList)) {
     buttonElement.classList.add(params.inactiveButtonClass);
+    buttonElement.setAttribute('disabled','disabled');
   }
   else {
     buttonElement.classList.remove(params.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
-};
+}
 
 enableValidation() {
     const fieldList = Array.from(this._form.querySelectorAll(this._params.inputSelector));

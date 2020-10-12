@@ -1,3 +1,5 @@
+import Validator from URL()
+
 const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');

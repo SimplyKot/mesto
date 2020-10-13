@@ -13,7 +13,7 @@ const inputInfoField = authorPopupForm.querySelector('input[name=info-input]');
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
-const cardsList = document.querySelector('.cards__list');
+//const cardsList = document.querySelector('.cards__list');
 
 const addPopup = document.querySelector('#place');
 const addPopupCloseButton = addPopup.querySelector('.popup__close-button');
@@ -23,10 +23,10 @@ const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
 const imagePopup = document.querySelector('#image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupPicture = imagePopup.querySelector('.popup__image');
-const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
+//const imagePopupPicture = imagePopup.querySelector('.popup__image');
+//const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
 
-const cardTemplate = document.querySelector('#card-template').content;
+//const cardTemplate = document.querySelector('#card-template').content;
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
@@ -88,35 +88,6 @@ function formSubmitPlaceHandler(evt) {
   inputLinkField.value = '';
   submitButton.classList.add('popup__button_disabled');
   togglePopup(addPopup);
-}
-
-function addCard(card, position = 'end') {
-  //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
-  //'start' -  добавление в начало списка
-  //Любую другое значение - в конец
-
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
-
-  cardElement.querySelector('.card__delete-button').addEventListener('click', evt => evt.target.closest('.card').remove());
-  cardImage.setAttribute('src', card.link);
-  cardImage.setAttribute('alt', card.name);
-
-  cardImage.addEventListener('click', () => {
-    imagePopupPicture.setAttribute('src', card.link);
-    imagePopupPicture.setAttribute('alt', card.name);
-    imagePopupTitle.textContent = card.name;
-    togglePopup(imagePopup);
-  });
-
-  cardElement.querySelector('.card__name').textContent = card.name;
-  cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
-  if (position != 'start') {
-    cardsList.append(cardElement);
-  }
-  else {
-    cardsList.prepend(cardElement);
-  }
 }
 
 function renderCardList() {

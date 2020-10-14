@@ -1,4 +1,5 @@
-import Validator from './validate.js'
+import Validator from './FormValidator.js'
+import Card from './Card.js'
 
 const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -13,7 +14,6 @@ const inputInfoField = authorPopupForm.querySelector('input[name=info-input]');
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
-//const cardsList = document.querySelector('.cards__list');
 
 const addPopup = document.querySelector('#place');
 const addPopupCloseButton = addPopup.querySelector('.popup__close-button');
@@ -23,10 +23,6 @@ const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
 const imagePopup = document.querySelector('#image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-//const imagePopupPicture = imagePopup.querySelector('.popup__image');
-//const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
-
-//const cardTemplate = document.querySelector('#card-template').content;
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
@@ -67,7 +63,6 @@ function togglePopup(popupElement) {
     popupElement.removeEventListener('mousedown', closeByOverlayClick);
     closePopup(popupElement);
   }
-  //popupElement.classList.toggle('popup_opened');
 }
 
 function formAuthorSubmitHandler(evt) {
@@ -78,12 +73,16 @@ function formAuthorSubmitHandler(evt) {
 }
 
 function formSubmitPlaceHandler(evt) {
-  const submitButton = evt.target.querySelector('.popup__button');
   evt.preventDefault();
+  const submitButton = evt.target.querySelector('.popup__button');
+  
   const newCard = {};
   newCard.name = inputPlaceField.value;
   newCard.link = inputLinkField.value;
-  addCard(newCard, 'start');
+  
+  const cardFormClass = new Card(newCard,'start');
+  cardFormClass.generateCard();
+
   inputPlaceField.value = '';
   inputLinkField.value = '';
   submitButton.classList.add('popup__button_disabled');
@@ -91,7 +90,11 @@ function formSubmitPlaceHandler(evt) {
 }
 
 function renderCardList() {
-  initialCards.forEach(addCard);
+  initialCards.forEach((card)=>{
+    const cardFormClass = new Card(card,'end');
+    cardFormClass.generateCard();
+  })
+  
 }
 
 editButton.addEventListener('click', evt => togglePopup(authorPopup));
@@ -105,7 +108,6 @@ addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
 renderCardList();
-
 
 formList.forEach((form)=>{
   const formValidator = new Validator(validationConfig, form);

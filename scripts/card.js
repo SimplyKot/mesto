@@ -1,64 +1,58 @@
-/*
-function closePlacePopupByEscape(evt) {
-  if (evt.key === "Escape") {
-    imagePopup.classList.remove('popup_opened');
-  }
-}
+export default class Card {
 
-function closePlacePopupByOverlayClick(evt) {
-  if (evt.target === evt.currentTarget) {
-    imagePopup.classList.remove('popup_opened');
+  constructor(card, position) {
+    this._card=card;
+    this._position = position;
+    this._imagePopup = document.querySelector('#image');
+    this._imagePopupPicture = this._imagePopup.querySelector('.popup__image');
+    this._imagePopupTitle = this._imagePopup.querySelector('.popup__image-title');
+    this._cardsList = document.querySelector('.cards__list');
+    this._cardTemplate = document.querySelector('#card-template').content;
+    this._cardElement = this._cardTemplate.cloneNode(true);
+    this._cardImage = this._cardElement.querySelector('.card__image');
   }
-}
-*/
 
-function addCard(card, position = 'end') {
+  _addCard(card, position) {
     //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
     //'start' -  добавление в начало списка
     //Любую другое значение - в конец
-
-    const imagePopup = document.querySelector('#image');
-    
-    const imagePopupPicture = imagePopup.querySelector('.popup__image');
-    const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
-    
-    const cardsList = document.querySelector('.cards__list');
-    const cardTemplate = document.querySelector('#card-template').content;
-    const cardElement = cardTemplate.cloneNode(true);
-    const cardImage = cardElement.querySelector('.card__image');
   
-    cardElement.querySelector('.card__delete-button').addEventListener('click', evt => evt.target.closest('.card').remove());
-    cardImage.setAttribute('src', card.link);
-    cardImage.setAttribute('alt', card.name);
+    this._cardElement.querySelector('.card__delete-button').addEventListener('click', evt => evt.target.closest('.card').remove());
+    this._cardImage.setAttribute('src', card.link);
+    this._cardImage.setAttribute('alt', card.name);
   
-    cardImage.addEventListener('click', () => {
-      imagePopupPicture.setAttribute('src', card.link);
-      imagePopupPicture.setAttribute('alt', card.name);
-      imagePopupTitle.textContent = card.name;
+    this._cardImage.addEventListener('click', () => {
+      this._imagePopupPicture.setAttribute('src', card.link);
+      this._imagePopupPicture.setAttribute('alt', card.name);
+      this._imagePopupTitle.textContent = card.name;
       //togglePopup(imagePopup);
       
       document.addEventListener('keydown', (evt) => {
         if (evt.key === "Escape") {
-          imagePopup.classList.remove('popup_opened');
+          this._imagePopup.classList.remove('popup_opened');
         }
       });
-      imagePopup.addEventListener('mousedown', (evt) => {
+      this._imagePopup.addEventListener('mousedown', (evt) => {
         if (evt.target === evt.currentTarget) {
-          imagePopup.classList.remove('popup_opened');
+          this._imagePopup.classList.remove('popup_opened');
         }
       });
 
-      imagePopup.classList.add('popup_opened');
+      this._imagePopup.classList.add('popup_opened');
 
       
     });
   
-    cardElement.querySelector('.card__name').textContent = card.name;
-    cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
+    this._cardElement.querySelector('.card__name').textContent = card.name;
+    this._cardElement.querySelector('.card__like-button').addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
     if (position != 'start') {
-      cardsList.append(cardElement);
+      this._cardsList.append(this._cardElement);
     }
     else {
-      cardsList.prepend(cardElement);
+      this._cardsList.prepend(this._cardElement);
     }
   }
+  generateCard() {
+    return this._addCard(this._card,this._position);
+  };
+}

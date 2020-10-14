@@ -1,7 +1,8 @@
-import Validator from './FormValidator.js'
+import {initialCards as cards, validationConfig as config} from  './data.js';
+import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 
-const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
+const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
@@ -72,6 +73,21 @@ function formAuthorSubmitHandler(evt) {
   togglePopup(authorPopup);
 }
 
+function addCard(card,position) {
+  //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
+  //'start' -  добавление в начало списка
+  //Любую другое значение - в конец
+  const cardsList = document.querySelector('.cards__list')
+  const cardFormClass = new Card(card,'#card-template');
+
+  if (position != 'start') {
+    cardsList.append(cardFormClass.getCard());
+  }
+  else {
+    cardsList.prepend(cardFormClass.getCard());
+  }
+}
+
 function formSubmitPlaceHandler(evt) {
   evt.preventDefault();
   const submitButton = evt.target.querySelector('.popup__button');
@@ -79,10 +95,8 @@ function formSubmitPlaceHandler(evt) {
   const newCard = {};
   newCard.name = inputPlaceField.value;
   newCard.link = inputLinkField.value;
-  
-  const cardFormClass = new Card(newCard,'#card-template','start');
-  cardFormClass.generateCard();
 
+  addCard(newCard,'start');
   inputPlaceField.value = '';
   inputLinkField.value = '';
   submitButton.classList.add('popup__button_disabled');
@@ -90,11 +104,10 @@ function formSubmitPlaceHandler(evt) {
 }
 
 function renderCardList() {
-  initialCards.forEach((card)=>{
-    const cardFormClass = new Card(card,'#card-template','end');
-    cardFormClass.generateCard();
-  })
-}
+  cards.forEach((card)=>{
+    addCard(card,'end');
+  });
+  }
 
 editButton.addEventListener('click', evt => togglePopup(authorPopup));
 AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
@@ -109,6 +122,6 @@ imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 renderCardList();
 
 formList.forEach((form)=>{
-  const formValidator = new Validator(validationConfig, form);
+  const formValidator = new FormValidator(config, form);
   formValidator.enableValidation();
 });

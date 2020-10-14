@@ -1,13 +1,13 @@
 export default class Card {
 
-  constructor(card, position) {
+  constructor(card, template, position) {
     this._card=card;
     this._position = position;
     this._imagePopup = document.querySelector('#image');
     this._imagePopupPicture = this._imagePopup.querySelector('.popup__image');
     this._imagePopupTitle = this._imagePopup.querySelector('.popup__image-title');
     this._cardsList = document.querySelector('.cards__list');
-    this._cardTemplate = document.querySelector('#card-template').content;
+    this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
   }

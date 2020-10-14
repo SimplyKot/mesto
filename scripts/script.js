@@ -80,7 +80,7 @@ function formSubmitPlaceHandler(evt) {
   newCard.name = inputPlaceField.value;
   newCard.link = inputLinkField.value;
   
-  const cardFormClass = new Card(newCard,'start');
+  const cardFormClass = new Card(newCard,'#card-template','start');
   cardFormClass.generateCard();
 
   inputPlaceField.value = '';
@@ -91,10 +91,9 @@ function formSubmitPlaceHandler(evt) {
 
 function renderCardList() {
   initialCards.forEach((card)=>{
-    const cardFormClass = new Card(card,'end');
+    const cardFormClass = new Card(card,'#card-template','end');
     cardFormClass.generateCard();
   })
-  
 }
 
 editButton.addEventListener('click', evt => togglePopup(authorPopup));

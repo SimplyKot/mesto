@@ -50,7 +50,7 @@ function setAuthorFields() {
   inputInfoField.value = authorInfo.textContent;
 }
 
-function togglePopup(popupElement) {
+export function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
     if (popupElement.id === 'author') {
       setAuthorFields(popupElement)

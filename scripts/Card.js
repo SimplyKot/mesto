@@ -1,3 +1,4 @@
+import {togglePopup} from './index.js'
 export default class Card {
 
   constructor(card, template) {
@@ -10,20 +11,6 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector('.card__image');
   }
 
-  _handleMouseClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      const _imagePopup = document.querySelector('#image');
-      _imagePopup.classList.remove('popup_opened');
-    }
-  }
-
-  _handleEnterKey(evt) {
-    const _imagePopup = document.querySelector('#image');
-    if (evt.key === "Escape") {
-      _imagePopup.classList.remove('popup_opened');
-    }
-  }
-
   _handleTrashButton(evt) {
     evt.target.closest('.card').remove();
   }
@@ -32,22 +19,26 @@ export default class Card {
     evt.target.classList.toggle('card__like-button_active');
   }
 
-  getCard() {
+  _setEventListeners() {
     this._cardElement.querySelector('.card__delete-button').addEventListener('click', this._handleTrashButton);
-    this._cardImage.setAttribute('src', this._card.link);
-    this._cardImage.setAttribute('alt', this._card.name);
 
     this._cardImage.addEventListener('click', () => {
       this._imagePopupPicture.setAttribute('src', this._card.link);
       this._imagePopupPicture.setAttribute('alt', this._card.name);
       this._imagePopupTitle.textContent = this._card.name;
-      document.addEventListener('keydown', this._handleEnterKey);
+      document.addEventListener('keydown', this._handleEscapeKey);
       this._imagePopup.addEventListener('mousedown', this._handleMouseClick);
-      this._imagePopup.classList.add('popup_opened');
+      togglePopup(this._imagePopup);
     });
-    this._cardElement.querySelector('.card__name').textContent = this._card.name;
-    this._cardElement.querySelector('.card__like-button').addEventListener('click', this._handleLikeButton);
 
+    this._cardElement.querySelector('.card__like-button').addEventListener('click', this._handleLikeButton);
+  }
+
+  getCard() {
+    this._cardImage.setAttribute('src', this._card.link);
+    this._cardImage.setAttribute('alt', this._card.name);
+    this._cardElement.querySelector('.card__name').textContent = this._card.name;
+    this._setEventListeners();
     return this._cardElement;
   }
 }

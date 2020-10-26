@@ -1,4 +1,5 @@
 import {initialCards as cards, validationConfig as config} from  './data.js';
+import Section from './Section.js';
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 
@@ -103,11 +104,11 @@ function formSubmitPlaceHandler(evt) {
   togglePopup(addPopup);
 }
 
-function renderCardList() {
-  cards.forEach((card)=>{
-    addCard(card,'end');
-  });
-  }
+// function renderCardList() {
+//   cards.forEach((card)=>{
+//     addCard(card,'end');
+//   });
+//   }
 
 editButton.addEventListener('click', evt => togglePopup(authorPopup));
 AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
@@ -119,9 +120,13 @@ addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
 imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
-renderCardList();
+//renderCardList();
 
 formList.forEach((form)=>{
   const formValidator = new FormValidator(config, form);
   formValidator.enableValidation();
 });
+
+
+const cardSection = new Section({items:cards, renderer:addCard},'cards');
+cardSection.renderAllItems();

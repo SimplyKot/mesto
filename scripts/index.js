@@ -29,6 +29,8 @@ const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 const imagePopup = document.querySelector('#image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
+const cardsList = document.querySelector('.cards__list')
+
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
@@ -77,11 +79,11 @@ function formAuthorSubmitHandler(evt) {
   togglePopup(authorPopup);
 }
 
-function addCard(card,section,position) {
+function addCard(card,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
   //'start' -  добавление в начало списка
   //Любую другое значение - в конец
-  const cardsList = section.querySelector('.cards__list')
+  
   const cardFormClass = new Card(card,'#card-template');
 
   if (position != 'start') {
@@ -93,17 +95,16 @@ function addCard(card,section,position) {
 }
 
 function formSubmitPlaceHandler(evt) {
+  //const submitButton = evt.target.querySelector('.popup__button');
   evt.preventDefault();
-  const submitButton = evt.target.querySelector('.popup__button');
-  
   const newCard = {};
-  newCard.name = inputPlaceField.value;
-  newCard.link = inputLinkField.value;
+  newCard.name = place;
+  newCard.link = link;
 
   addCard(newCard,'start');
   inputPlaceField.value = '';
   inputLinkField.value = '';
-  submitButton.classList.add('popup__button_disabled');
+  //submitButton.classList.add('popup__button_disabled');
   togglePopup(addPopup);
 }
 
@@ -120,10 +121,11 @@ editButton.addEventListener('click', evt => authorSection.open());
 //AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
-
-addButton.addEventListener('click', evt => togglePopup(addPopup));
-addPopupCloseButton.addEventListener('click', evt => togglePopup(addPopup));
-addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
+const imageSection = new PopupWithForm({popup:'#place',submitHandler:addImageAddHandler});
+addButton.addEventListener('click', evt => imageSection.open());
+//addButton.addEventListener('click', evt => togglePopup(addPopup));
+//addPopupCloseButton.addEventListener('click', evt => togglePopup(addPopup));
+//addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
 imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
@@ -140,6 +142,13 @@ cardSectionContent.renderAllItems();
 // const imageSection = new PopupWithImage('#image');
 // imageSection.open('https://im0-tub-ru.yandex.net/i?id=bc69b4b5ec61a4ef69a72aea9b7b436e&n=13','Водопадик');
 
-const AddImageSection = new PopupWithForm({popup:'#place',submitHandler:''});
-AddImageSection.open();
-console.log(AddImageSection.getInputValues());
+
+function addImageAddHandler(cardValues) {
+  addCard(cardValues,'start');
+  imageSection.close();
+}
+
+
+//const AddImageSection = new PopupWithForm({popup:'#place',submitHandler:addImageAddHandler});
+//AddImageSection.open();
+//console.log(AddImageSection._getInputValues());

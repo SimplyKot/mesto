@@ -31,6 +31,5 @@ export default class Popup {
     }
 
     _setEventListeners() {
-
     }
 }

@@ -74,11 +74,11 @@ function formAuthorSubmitHandler(evt) {
   togglePopup(authorPopup);
 }
 
-function addCard(card,position) {
+function addCard(card,section,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
   //'start' -  добавление в начало списка
   //Любую другое значение - в конец
-  const cardsList = document.querySelector('.cards__list')
+  const cardsList = section.querySelector('.cards__list')
   const cardFormClass = new Card(card,'#card-template');
 
   if (position != 'start') {
@@ -127,6 +127,6 @@ formList.forEach((form)=>{
   formValidator.enableValidation();
 });
 
-
-const cardSection = new Section({items:cards, renderer:addCard},'cards');
-cardSection.renderAllItems();
+const cardSection = document.querySelector('.cards'); 
+const cardSectionContent = new Section({items:cards, renderer:addCard},cardSection);
+cardSectionContent.renderAllItems();

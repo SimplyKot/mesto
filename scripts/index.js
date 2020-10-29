@@ -135,7 +135,7 @@ formList.forEach((form)=>{
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
 
-//const imageSection = new Popup('#image');
-//imageSection.open();
+const imageSection = new Popup('#image');
+imageSection.open();
 
 //document.addEventListener('click', evt=> console.log(evt));

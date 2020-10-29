@@ -1,7 +1,8 @@
 import {initialCards as cards, validationConfig as config} from  './data.js';
 import Section from './Section.js';
-import FormValidator from './FormValidator.js'
-import Card from './Card.js'
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+import Popup from './Popup.js';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -74,6 +75,8 @@ function formAuthorSubmitHandler(evt) {
   togglePopup(authorPopup);
 }
 
+const authorSection = new Popup('#author');
+
 function addCard(card,section,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
   //'start' -  добавление в начало списка
@@ -110,7 +113,11 @@ function formSubmitPlaceHandler(evt) {
 //   });
 //   }
 
-editButton.addEventListener('click', evt => togglePopup(authorPopup));
+//editButton.addEventListener('click', evt => togglePopup(authorPopup));
+editButton.addEventListener('click', evt => authorSection.open());
+
+
+
 AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
@@ -127,6 +134,8 @@ formList.forEach((form)=>{
   formValidator.enableValidation();
 });
 
-const cardSection = document.querySelector('.cards'); 
-const cardSectionContent = new Section({items:cards, renderer:addCard},cardSection);
+
+const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
+
+// document.addEventListener('keydown', evt => console.log('main->', evt));

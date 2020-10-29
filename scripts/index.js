@@ -116,8 +116,6 @@ function formSubmitPlaceHandler(evt) {
 //editButton.addEventListener('click', evt => togglePopup(authorPopup));
 editButton.addEventListener('click', evt => authorSection.open());
 
-
-
 AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
@@ -134,8 +132,5 @@ formList.forEach((form)=>{
   formValidator.enableValidation();
 });
 
-
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
-
-// document.addEventListener('keydown', evt => console.log('main->', evt));

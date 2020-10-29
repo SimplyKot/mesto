@@ -75,8 +75,6 @@ function formAuthorSubmitHandler(evt) {
   togglePopup(authorPopup);
 }
 
-const authorSection = new Popup('#author');
-
 function addCard(card,section,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
   //'start' -  добавление в начало списка
@@ -114,10 +112,12 @@ function formSubmitPlaceHandler(evt) {
 //   }
 
 //editButton.addEventListener('click', evt => togglePopup(authorPopup));
-editButton.addEventListener('click', evt => authorSection.open());
 
-AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
+const authorSection = new Popup('#author');
+editButton.addEventListener('click', evt => authorSection.open());
+//AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
+
 
 addButton.addEventListener('click', evt => togglePopup(addPopup));
 addPopupCloseButton.addEventListener('click', evt => togglePopup(addPopup));
@@ -134,3 +134,8 @@ formList.forEach((form)=>{
 
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
+
+//const imageSection = new Popup('#image');
+//imageSection.open();
+
+//document.addEventListener('click', evt=> console.log(evt));

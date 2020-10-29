@@ -3,6 +3,7 @@ import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import Popup from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -135,7 +136,7 @@ formList.forEach((form)=>{
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
 
-const imageSection = new Popup('#image');
-imageSection.open();
+const imageSection = new PopupWithImage('#image');
+imageSection.show();
 
 //document.addEventListener('click', evt=> console.log(evt));

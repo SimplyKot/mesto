@@ -3,7 +3,8 @@ import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import Popup from './Popup.js';
-import { PopupWithImage } from './PopupWithImage.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWIthForm.js';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -136,7 +137,9 @@ formList.forEach((form)=>{
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
 
-const imageSection = new PopupWithImage('#image');
-imageSection.open('https://im0-tub-ru.yandex.net/i?id=bc69b4b5ec61a4ef69a72aea9b7b436e&n=13','Водопадик');
+// const imageSection = new PopupWithImage('#image');
+// imageSection.open('https://im0-tub-ru.yandex.net/i?id=bc69b4b5ec61a4ef69a72aea9b7b436e&n=13','Водопадик');
 
-//document.addEventListener('click', evt=> console.log(evt));
+const AddImageSection = new PopupWithForm({popup:'#place',submitHandler:''});
+AddImageSection.open();
+console.log(AddImageSection.getInputValues());

@@ -5,6 +5,7 @@ import Card from './Card.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWIthForm.js';
+import UserInfo from './UserInfo.js';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -31,30 +32,30 @@ const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
 const cardsList = document.querySelector('.cards__list')
 
-function closePopup(popupElement) {
-  popupElement.classList.remove('popup_opened');
-}
+// function closePopup(popupElement) {
+//   popupElement.classList.remove('popup_opened');
+// }
 
-function оpenPopup(popupElement) {
-  popupElement.classList.add('popup_opened');
-}
+// function оpenPopup(popupElement) {
+//   popupElement.classList.add('popup_opened');
+// }
 
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    togglePopup(document.querySelector('.popup_opened'));
-  }
-}
+// function closeByEscape(evt) {
+//   if (evt.key === "Escape") {
+//     togglePopup(document.querySelector('.popup_opened'));
+//   }
+// }
 
-function closeByOverlayClick(evt) {
-  if (evt.target === evt.currentTarget) {
-    togglePopup(document.querySelector('.popup_opened'));
-  }
-}
+// function closeByOverlayClick(evt) {
+//   if (evt.target === evt.currentTarget) {
+//     togglePopup(document.querySelector('.popup_opened'));
+//   }
+// }
 
-function setAuthorFields() {
-  inputNameField.value = authorName.textContent;
-  inputInfoField.value = authorInfo.textContent;
-}
+// function setAuthorFields() {
+//   inputNameField.value = authorName.textContent;
+//   inputInfoField.value = authorInfo.textContent;
+// }
 
 export function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
@@ -72,12 +73,12 @@ export function togglePopup(popupElement) {
   }
 }
 
-function formAuthorSubmitHandler(evt) {
-  evt.preventDefault();
-  authorName.textContent = inputNameField.value;
-  authorInfo.textContent = inputInfoField.value;
-  togglePopup(authorPopup);
-}
+// function formAuthorSubmitHandler(evt) {
+//   evt.preventDefault();
+//   authorName.textContent = inputNameField.value;
+//   authorInfo.textContent = inputInfoField.value;
+//   togglePopup(authorPopup);
+// }
 
 function addCard(card,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
@@ -116,7 +117,8 @@ function addCard(card,position) {
 
 //editButton.addEventListener('click', evt => togglePopup(authorPopup));
 
-const authorSection = new PopupWithForm({popup:'#author',submitHandler:addImageAddHandler});
+const Info = new UserInfo({name:'Жак-Ив Кусто', info:'Исследователь океана'});
+const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
 editButton.addEventListener('click', evt => authorSection.open());
 //AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 //authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
@@ -129,7 +131,7 @@ addButton.addEventListener('click', evt => imageSection.open());
 //addPopupCloseButton.addEventListener('click', evt => togglePopup(addPopup));
 //addPopupForm.addEventListener('submit', formSubmitPlaceHandler);
 
-imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
+//imagePopupCloseButton.addEventListener('click', evt => togglePopup(imagePopup));
 
 //renderCardList();
 
@@ -141,16 +143,12 @@ formList.forEach((form)=>{
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
 cardSectionContent.renderAllItems();
 
-// const imageSection = new PopupWithImage('#image');
-// imageSection.open('https://im0-tub-ru.yandex.net/i?id=bc69b4b5ec61a4ef69a72aea9b7b436e&n=13','Водопадик');
-
-
 function addImageAddHandler(cardValues) {
   addCard(cardValues,'start');
   imageSection.close();
 }
 
-
-//const AddImageSection = new PopupWithForm({popup:'#place',submitHandler:addImageAddHandler});
-//AddImageSection.open();
-//console.log(AddImageSection._getInputValues());
+function editAuthorHandler(infoValues) {
+  console.log(infoValues);
+  Info.setUserInfo(infoValues);
+}

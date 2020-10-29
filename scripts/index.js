@@ -94,19 +94,19 @@ function addCard(card,position) {
   }
 }
 
-function formSubmitPlaceHandler(evt) {
-  //const submitButton = evt.target.querySelector('.popup__button');
-  evt.preventDefault();
-  const newCard = {};
-  newCard.name = place;
-  newCard.link = link;
+// function formSubmitPlaceHandler(evt) {
+//   //const submitButton = evt.target.querySelector('.popup__button');
+//   evt.preventDefault();
+//   const newCard = {};
+//   newCard.name = place;
+//   newCard.link = link;
 
-  addCard(newCard,'start');
-  inputPlaceField.value = '';
-  inputLinkField.value = '';
-  //submitButton.classList.add('popup__button_disabled');
-  togglePopup(addPopup);
-}
+//   addCard(newCard,'start');
+//   inputPlaceField.value = '';
+//   inputLinkField.value = '';
+//   //submitButton.classList.add('popup__button_disabled');
+//   togglePopup(addPopup);
+// }
 
 // function renderCardList() {
 //   cards.forEach((card)=>{
@@ -116,10 +116,12 @@ function formSubmitPlaceHandler(evt) {
 
 //editButton.addEventListener('click', evt => togglePopup(authorPopup));
 
-const authorSection = new Popup('#author');
+const authorSection = new PopupWithForm({popup:'#author',submitHandler:addImageAddHandler});
 editButton.addEventListener('click', evt => authorSection.open());
 //AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
-authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
+//authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
+
+
 
 const imageSection = new PopupWithForm({popup:'#place',submitHandler:addImageAddHandler});
 addButton.addEventListener('click', evt => imageSection.open());

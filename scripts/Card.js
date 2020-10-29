@@ -1,4 +1,5 @@
 import {togglePopup} from './index.js'
+import PopupWithImage from './PopupWithImage.js';
 export default class Card {
 
   constructor(card, template) {
@@ -23,12 +24,14 @@ export default class Card {
     this._cardElement.querySelector('.card__delete-button').addEventListener('click', this._handleTrashButton);
 
     this._cardImage.addEventListener('click', () => {
-      this._imagePopupPicture.setAttribute('src', this._card.link);
-      this._imagePopupPicture.setAttribute('alt', this._card.name);
-      this._imagePopupTitle.textContent = this._card.name;
-      document.addEventListener('keydown', this._handleEscapeKey);
-      this._imagePopup.addEventListener('mousedown', this._handleMouseClick);
-      togglePopup(this._imagePopup);
+      const imagePopup = new PopupWithImage('#image');
+      imagePopup.open(this._card.name,this._card.link);
+      // this._imagePopupPicture.setAttribute('src', this._card.link);
+      // this._imagePopupPicture.setAttribute('alt', this._card.name);
+      // this._imagePopupTitle.textContent = this._card.name;
+      // document.addEventListener('keydown', this._handleEscapeKey);
+      // this._imagePopup.addEventListener('mousedown', this._handleMouseClick);
+      // togglePopup(this._imagePopup);
     });
 
     this._cardElement.querySelector('.card__like-button').addEventListener('click', this._handleLikeButton);

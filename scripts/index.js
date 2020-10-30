@@ -135,8 +135,10 @@ addButton.addEventListener('click', evt => imageSection.open());
 
 //renderCardList();
 
+
 formList.forEach((form)=>{
   const formValidator = new FormValidator(config, form);
+  console.log();
   formValidator.enableValidation();
 });
 

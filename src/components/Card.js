@@ -1,5 +1,5 @@
 //import {togglePopup} from './index.js'
-import PopupWithImage from './PopupWithImage.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
 export default class Card {
 
   constructor(card, template, handleCardClick) {

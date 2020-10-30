@@ -13,9 +13,9 @@ const addButton = document.querySelector('.profile__add-button');
 
 const authorPopup = document.querySelector('#author');
 const authorPopupForm = authorPopup.querySelector('.popup__content')
-const AuthorPopupCloseButton = authorPopup.querySelector('.popup__close-button');
-const inputNameField = authorPopupForm.querySelector('input[name=name-input]');
-const inputInfoField = authorPopupForm.querySelector('input[name=info-input]');
+//const AuthorPopupCloseButton = authorPopup.querySelector('.popup__close-button');
+const inputNameField = authorPopupForm.querySelector('input[name=name]');
+const inputInfoField = authorPopupForm.querySelector('input[name=info]');
 
 const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
@@ -52,10 +52,11 @@ const cardsList = document.querySelector('.cards__list')
 //   }
 // }
 
-// function setAuthorFields() {
-//   inputNameField.value = authorName.textContent;
-//   inputInfoField.value = authorInfo.textContent;
-// }
+function setAuthorFields() {
+  const userInfo = Info.getUserInfo();
+  authorName.textContent = userInfo.name;
+  authorInfo.textContent = userInfo.info;
+}
 
 export function togglePopup(popupElement) {
   if (!popupElement.classList.contains('popup_opened')) {
@@ -118,8 +119,15 @@ function addCard(card,position) {
 //editButton.addEventListener('click', evt => togglePopup(authorPopup));
 
 const Info = new UserInfo({name:'Жак-Ив Кусто', info:'Исследователь океана'});
+setAuthorFields();
+
 const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
-editButton.addEventListener('click', evt => authorSection.open());
+editButton.addEventListener('click', evt => {
+  const currentInfo = Info.getUserInfo();
+  inputNameField.value=currentInfo.name;
+  inputInfoField.value=currentInfo.info;
+  authorSection.open()}
+  );
 //AuthorPopupCloseButton.addEventListener('click', evt => togglePopup(authorPopup));
 //authorPopupForm.addEventListener('submit', formAuthorSubmitHandler);
 
@@ -152,5 +160,11 @@ function addImageAddHandler(cardValues) {
 
 function editAuthorHandler(infoValues) {
   console.log(infoValues);
+  authorName.textContent = infoValues.name;
+  authorInfo.textContent = infoValues.info;
   Info.setUserInfo(infoValues);
+  setAuthorFields();
+  authorSection.close();
+
+
 }

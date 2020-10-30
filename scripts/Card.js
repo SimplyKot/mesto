@@ -1,4 +1,4 @@
-import {togglePopup} from './index.js'
+//import {togglePopup} from './index.js'
 import PopupWithImage from './PopupWithImage.js';
 export default class Card {
 

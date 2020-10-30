@@ -2,8 +2,8 @@ import {initialCards as cards, validationConfig as config} from  './data.js';
 import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
+//import Popup from './Popup.js';
+//import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWIthForm.js';
 import UserInfo from './UserInfo.js';
 
@@ -21,14 +21,14 @@ const profile = document.querySelector('.profile__text');
 const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 
-const addPopup = document.querySelector('#place');
-const addPopupCloseButton = addPopup.querySelector('.popup__close-button');
-const addPopupForm = addPopup.querySelector('.popup__content');
-const inputPlaceField = addPopupForm.querySelector('input[name=place-input]');
-const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
+//const addPopup = document.querySelector('#place');
+//const addPopupCloseButton = addPopup.querySelector('.popup__close-button');
+//const addPopupForm = addPopup.querySelector('.popup__content');
+//const inputPlaceField = addPopupForm.querySelector('input[name=place-input]');
+//const inputLinkField = addPopupForm.querySelector('input[name=link-input]');
 
-const imagePopup = document.querySelector('#image');
-const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
+//const imagePopup = document.querySelector('#image');
+//const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
 const cardsList = document.querySelector('.cards__list')
 
@@ -58,21 +58,21 @@ function setAuthorFields() {
   authorInfo.textContent = userInfo.info;
 }
 
-export function togglePopup(popupElement) {
-  if (!popupElement.classList.contains('popup_opened')) {
-    if (popupElement.id === 'author') {
-      setAuthorFields(popupElement)
-    };
-    document.addEventListener('keydown', closeByEscape);
-    popupElement.addEventListener('mousedown', closeByOverlayClick);
-    оpenPopup(popupElement);
-  }
-  else {
-    document.removeEventListener('keydown', closeByEscape);
-    popupElement.removeEventListener('mousedown', closeByOverlayClick);
-    closePopup(popupElement);
-  }
-}
+// export function togglePopup(popupElement) {
+//   if (!popupElement.classList.contains('popup_opened')) {
+//     if (popupElement.id === 'author') {
+//       setAuthorFields(popupElement)
+//     };
+//     document.addEventListener('keydown', closeByEscape);
+//     popupElement.addEventListener('mousedown', closeByOverlayClick);
+//     оpenPopup(popupElement);
+//   }
+//   else {
+//     document.removeEventListener('keydown', closeByEscape);
+//     popupElement.removeEventListener('mousedown', closeByOverlayClick);
+//     closePopup(popupElement);
+//   }
+// }
 
 // function formAuthorSubmitHandler(evt) {
 //   evt.preventDefault();

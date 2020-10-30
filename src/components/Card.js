@@ -1,5 +1,3 @@
-//import {togglePopup} from './index.js'
-import PopupWithImage from '../scripts/PopupWithImage.js';
 export default class Card {
 
   constructor(card, template, handleCardClick) {
@@ -26,12 +24,6 @@ export default class Card {
 
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick();
-      // this._imagePopupPicture.setAttribute('src', this._card.link);
-      // this._imagePopupPicture.setAttribute('alt', this._card.name);
-      // this._imagePopupTitle.textContent = this._card.name;
-      // document.addEventListener('keydown', this._handleEscapeKey);
-      // this._imagePopup.addEventListener('mousedown', this._handleMouseClick);
-      // togglePopup(this._imagePopup);
     });
 
     this._cardElement.querySelector('.card__like-button').addEventListener('click', this._handleLikeButton);

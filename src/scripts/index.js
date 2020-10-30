@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import {initialCards as cards, validationConfig as config} from  './data.js';
 import Section from './Section.js';
 import FormValidator from './FormValidator.js';

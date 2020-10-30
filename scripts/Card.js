@@ -2,7 +2,7 @@
 import PopupWithImage from './PopupWithImage.js';
 export default class Card {
 
-  constructor(card, template) {
+  constructor(card, template, handleCardClick) {
     this._card = card;
     this._imagePopup = document.querySelector('#image');
     this._imagePopupPicture = this._imagePopup.querySelector('.popup__image');
@@ -10,6 +10,7 @@ export default class Card {
     this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
+    this._handleCardClick = handleCardClick;
   }
 
   _handleTrashButton(evt) {
@@ -24,8 +25,7 @@ export default class Card {
     this._cardElement.querySelector('.card__delete-button').addEventListener('click', this._handleTrashButton);
 
     this._cardImage.addEventListener('click', () => {
-      const imagePopup = new PopupWithImage('#image');
-      imagePopup.open(this._card.name,this._card.link);
+      this._handleCardClick();
       // this._imagePopupPicture.setAttribute('src', this._card.link);
       // this._imagePopupPicture.setAttribute('alt', this._card.name);
       // this._imagePopupTitle.textContent = this._card.name;

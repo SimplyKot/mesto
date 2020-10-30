@@ -3,7 +3,7 @@ import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 //import Popup from './Popup.js';
-//import PopupWithImage from './PopupWithImage.js';
+import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWIthForm.js';
 import UserInfo from './UserInfo.js';
 
@@ -81,12 +81,18 @@ function setAuthorFields() {
 //   togglePopup(authorPopup);
 // }
 
+function handleCardClick() 
+{
+  const imagePopup = new PopupWithImage('#image');
+  imagePopup.open(this._card.name,this._card.link);
+}
+
 function addCard(card,position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
   //'start' -  добавление в начало списка
   //Любую другое значение - в конец
   
-  const cardFormClass = new Card(card,'#card-template');
+  const cardFormClass = new Card(card,'#card-template',handleCardClick);
 
   if (position != 'start') {
     cardsList.append(cardFormClass.getCard());
@@ -168,3 +174,4 @@ function editAuthorHandler(infoValues) {
 
 
 }
+

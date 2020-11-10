@@ -1,12 +1,14 @@
 import '../pages/index.css';
 
-import {initialCards as cards, validationConfig as config} from  './data.js';
+//import {initialCards as cards, 
+import {validationConfig as config} from  './data.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWIthForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -22,6 +24,18 @@ const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 
 const cardsList = document.querySelector('.cards__list')
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-17',
+  headers: {
+    authorization: '5b28e3f6-a4ef-488b-b893-2830e6e47a17',
+    'Content-Type': 'application/json'
+  }
+}); 
+
+
+const cards = api.getInitialCards();
+//console.log(cards);
 
 function setAuthorFields() {
   const userInfo = Info.getUserInfo();
@@ -71,6 +85,7 @@ formList.forEach((form)=>{
 });
 
 const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
+//console.log(cardSectionContent);
 cardSectionContent.renderAllItems();
 
 function addImageAddHandler(cardValues) {
@@ -86,4 +101,6 @@ function editAuthorHandler(infoValues) {
   setAuthorFields();
   authorSection.close();
 }
+
+
 

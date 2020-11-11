@@ -20,8 +20,12 @@ const inputNameField = authorPopupForm.querySelector('input[name=name]');
 const inputInfoField = authorPopupForm.querySelector('input[name=info]');
 
 const profile = document.querySelector('.profile__text');
+const authorAvatar = document.querySelector('.profile__avatar');
 const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
+
+
+console.log(authorAvatar);
 
 const cardsList = document.querySelector('.cards__list')
 
@@ -54,6 +58,7 @@ function setAuthorFields() {
     {
       authorName.textContent = data.name;
       authorInfo.textContent = data.about;
+      authorAvatar.setAttribute('src', data.avatar);
   })
 }
 

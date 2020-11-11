@@ -32,4 +32,15 @@ export default class Api {
     })
     .catch(err => consile.log(err))
   }
+
+  editProfile(name, about) {
+    fetch(`${this._baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+    name: name,
+    about: about
+  })
+}); 
+  }
 }

@@ -62,6 +62,8 @@ function setAuthorFields() {
   })
 }
 
+//api.editProfile('Kot','Web student');
+
 
 
 // function setAuthorFields() {

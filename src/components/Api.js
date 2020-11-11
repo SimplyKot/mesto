@@ -5,16 +5,22 @@ export default class Api {
   }
 
   getInitialCards() {
-    let cards = [];
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
     headers: this._headers
-})
-  .then(res => res.json())
+    })
   .then((res) => {
-    res.forEach(item => cards.push(item));
-  });
-  return cards;
+    if (!res.ok) {
+      return Promise.reject('Server error');
   }
+  return res.json();
+  })
+  .then((data) => {
+    return data;
+  })
+  .catch(err => {
+    alert(err);
+});
+  }  
 
   // другие методы работы с API
 }

@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-//import {initialCards as cards, 
+import {initialCards as oldCards} from  './data.js'; 
 import {validationConfig as config} from  './data.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -34,8 +34,18 @@ const api = new Api({
 }); 
 
 
-const cards = api.getInitialCards();
-//console.log(cards);
+const cards = api.getInitialCards().then((data) => {
+  const items = data.map(card => {
+    return {
+      name : card.name,
+      link: card.link,
+    }
+  });
+  console.log(items);
+  const cardSectionContent = new Section({items:items, renderer:addCard},'.cards');
+  cardSectionContent.renderAllItems();
+});
+
 
 function setAuthorFields() {
   const userInfo = Info.getUserInfo();
@@ -84,9 +94,12 @@ formList.forEach((form)=>{
   formValidator.enableValidation();
 });
 
-const cardSectionContent = new Section({items:cards, renderer:addCard},'.cards');
-//console.log(cardSectionContent);
-cardSectionContent.renderAllItems();
+// console.log(cards);
+// console.log(oldCards);
+// const cardSectionContentNew = new Section({items:cards, renderer:addCard},'.cards');
+// const cardSectionContent = new Section({items:oldCards, renderer:addCard},'.cards');
+// //console.log(cardSectionContent);
+// cardSectionContent.renderAllItems();
 
 function addImageAddHandler(cardValues) {
   addCard(cardValues,'start');

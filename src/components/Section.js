@@ -7,18 +7,14 @@ export default class Section {
   }
 
   renderAllItems(){
-    const items = this._items;
-    console.log(items);
-    items.forEach(
-      function(item)  {
-        console.log(item)}
-        );
-      //this.addItem(item,this._container)
-      //});
+    this._items.forEach((item) => {
+      console.log(item);
+      this.addItem(item, this._container)
+      });
   }
 
-  addItem(item, container) {
+  addItem(item) {
     
-    this._renderer(item, container);    
+    this._renderer(item, this._container);    
   }
 }

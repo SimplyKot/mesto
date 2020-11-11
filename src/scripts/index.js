@@ -33,8 +33,8 @@ const api = new Api({
   }
 }); 
 
-
-const cards = api.getInitialCards().then((data) => {
+//Получаем с сервера и отображаем первоначальный массив карточек
+api.getInitialCards().then((data) => {
   const items = data.map(card => {
     return {
       name : card.name,
@@ -46,12 +46,24 @@ const cards = api.getInitialCards().then((data) => {
   cardSectionContent.renderAllItems();
 });
 
+//Получаем с сервера информацию о пользователе
+
 
 function setAuthorFields() {
-  const userInfo = Info.getUserInfo();
-  authorName.textContent = userInfo.name;
-  authorInfo.textContent = userInfo.info;
+  api.getUserInfo().then((data)=>
+    {
+      authorName.textContent = data.name;
+      authorInfo.textContent = data.about;
+  })
 }
+
+
+
+// function setAuthorFields() {
+//   const userInfo = Info.getUserInfo();
+//   authorName.textContent = userInfo.name;
+//   authorInfo.textContent = userInfo.info;
+// }
 
 function handleCardClick() 
 {

@@ -22,5 +22,14 @@ export default class Api {
 });
   }  
 
-  // другие методы работы с API
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
+      })
+    .then(res => res.json())
+    .then((data) => {
+      return data
+    })
+    .catch(err => consile.log(err))
+  }
 }

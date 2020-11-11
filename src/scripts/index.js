@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import {initialCards as oldCards} from  './data.js'; 
+//import {initialCards as oldCards} from  './data.js'; 
 import {validationConfig as config} from  './data.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
@@ -25,7 +25,7 @@ const authorName = profile.querySelector('.profile__name');
 const authorInfo = profile.querySelector('.profile__info');
 
 
-console.log(authorAvatar);
+//console.log(authorAvatar);
 
 const cardsList = document.querySelector('.cards__list')
 
@@ -45,24 +45,24 @@ api.getInitialCards().then((data) => {
       link: card.link,
     }
   });
-  console.log(items);
+  //console.log(items);
   const cardSectionContent = new Section({items:items, renderer:addCard},'.cards');
   cardSectionContent.renderAllItems();
 });
 
-//Получаем с сервера информацию о пользователе
+
+
 
 
 function setAuthorFields() {
-  api.getUserInfo().then((data)=>
-    {
+  const data = Info.getUserInfo();
+  //console.log(data);
       authorName.textContent = data.name;
       authorInfo.textContent = data.about;
       authorAvatar.setAttribute('src', data.avatar);
-  })
 }
 
-//api.editProfile('Kot','Web student');
+//api.editProfile('Kot','Web student_v1');
 
 
 
@@ -93,14 +93,33 @@ function addCard(card,position) {
   }
 }
 
-const Info = new UserInfo({name:'Жак-Ив Кусто', info:'Исследователь океана'});
+//FIXME: Здесь засада какая-то
+
+// Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
+const Info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'});
+
+// Получаем с сервера информацию о пользователе
+api
+  .getUserInfo()
+  .then((data) => {
+    // Обновляем имя и описание пользователя в классе
+    Info.setUserInfo({name:data.name, about:data.about, avatar:data.avatar});
+    // Обновляем аватар пользователя в классе
+    Info.setUserAvatar({avatar:data.avatar})
+  });
+
+// Выводим в консоль экземпляр класса
+  console.log(Info);
+// Выводим в коснсоль вывод метода получени данных
+  console.log(Info.getUserInfo());
+
 setAuthorFields();
 
 const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
 editButton.addEventListener('click', evt => {
   const currentInfo = Info.getUserInfo();
   inputNameField.value=currentInfo.name;
-  inputInfoField.value=currentInfo.info;
+  inputInfoField.value=currentInfo.about;
   authorSection.open()}
   );
 
@@ -126,9 +145,9 @@ function addImageAddHandler(cardValues) {
 }
 
 function editAuthorHandler(infoValues) {
-  console.log(infoValues);
+  //console.log(infoValues);
   authorName.textContent = infoValues.name;
-  authorInfo.textContent = infoValues.info;
+  authorInfo.textContent = infoValues.about;
   Info.setUserInfo(infoValues);
   setAuthorFields();
   authorSection.close();

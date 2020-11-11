@@ -26,21 +26,34 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
       })
-    .then(res => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject('Server error');
+    }
+    return res.json();
+    })
     .then((data) => {
       return data
     })
-    .catch(err => consile.log(err))
+    .catch(err => console.log(err))
   }
 
   editProfile(name, about) {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
     name: name,
     about: about
   })
+}).then((res) => {
+  if (!res.ok) {
+    return Promise.reject('Server error');
+}
+return res.json();
+})
+.catch(err => {
+  console.log(err);
 }); 
   }
 }

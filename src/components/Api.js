@@ -18,7 +18,7 @@ export default class Api {
     return data;
   })
   .catch(err => {
-    alert(err);
+    console.log(err);
 });
   }  
 

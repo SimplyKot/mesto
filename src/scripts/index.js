@@ -74,7 +74,9 @@ function handleCardClick()
   imagePopup.open(this._card.name,this._card.link);
 }
 
-
+function handleCardDelete(id) {
+  return api.deleteCard(id)
+}
 
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
 //const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
@@ -99,7 +101,7 @@ api.getUserInfo()
     //Любую другое значение - в конец
     
     
-    const cardFormClass = new Card(card,'#card-template',handleCardClick,info.getUserId());
+    const cardFormClass = new Card(card,'#card-template',handleCardClick,handleCardDelete,info.getUserId());
   
     if (position != 'start') {
       cardsList.append(cardFormClass.getCard());
@@ -151,6 +153,7 @@ function editAuthorHandler(infoValues) {
   
   authorSection.close();
 }
+
 
 
 

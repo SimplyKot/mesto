@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(card, template, handleCardClick, id) {
+  constructor(card, template, handleCardClick, handleCardDelete, id) {
     this._card = card;
     this._imagePopup = document.querySelector("#image");
     this._imagePopupPicture = this._imagePopup.querySelector(".popup__image");
@@ -13,10 +13,15 @@ export default class Card {
     this._cardDelete = this._cardElement.querySelector(".card__delete-button");
     this._userId = id;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
+  }
+
+  _deleteCard() {
+    //console.log("Удалим это:", this._card._id);
+    return this._handleCardDelete(this._card._id);
   }
 
   _handleTrashButton(evt) {
-    //TODO: Вот тут будем думать как удалять
     evt.target.closest(".card").remove();
   }
 
@@ -27,7 +32,9 @@ export default class Card {
   _setEventListeners() {
     this._cardElement
       .querySelector(".card__delete-button")
-      .addEventListener("click", this._handleTrashButton);
+      .addEventListener("click", (evt) => {
+        this._deleteCard().then(this._handleTrashButton(evt));
+      });
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick();

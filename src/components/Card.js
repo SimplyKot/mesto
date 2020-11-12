@@ -16,6 +16,7 @@ export default class Card {
   }
 
   _handleTrashButton(evt) {
+    //TODO: Вот тут будем думать как удалять
     evt.target.closest(".card").remove();
   }
 

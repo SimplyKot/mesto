@@ -8,6 +8,7 @@ export default class Card {
     this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
+    this._cardLikes = this._cardElement.querySelector('.card__likes');
     this._handleCardClick = handleCardClick;
   }
 
@@ -30,9 +31,11 @@ export default class Card {
   }
 
   getCard() {
+    //console.log(this._card);
     this._cardImage.setAttribute('src', this._card.link);
     this._cardImage.setAttribute('alt', this._card.name);
     this._cardElement.querySelector('.card__name').textContent = this._card.name;
+    this._cardLikes.textContent=this._card.likes.length;
     this._setEventListeners();
     return this._cardElement;
   }

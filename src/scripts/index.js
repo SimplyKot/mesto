@@ -43,6 +43,7 @@ api.getInitialCards().then((data) => {
     return {
       name : card.name,
       link: card.link,
+      likes: card.likes
     }
   });
   //console.log(items);

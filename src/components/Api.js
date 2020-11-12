@@ -64,7 +64,8 @@ return res.json();
       headers: this._headers,
       body: JSON.stringify({
       name: data.name,
-      link: data.link
+      link: data.link,
+      likes: data.likes
     })
   }).then((res) => {
     if (!res.ok) {

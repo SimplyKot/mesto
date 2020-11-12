@@ -16,6 +16,7 @@ export default class Card {
   }
 
   _handleTrashButton(evt) {
+    //TODO: Вот тут будем думать как удалять
     evt.target.closest(".card").remove();
   }
 
@@ -43,7 +44,7 @@ export default class Card {
 
   getCard() {
     //console.log(this._card);
-    console.log(this._isOwner());
+    //console.log(this._isOwner());
     if (!this._isOwner()) {
       this._cardDelete.classList.add("card__delete-button_disabled");
     }

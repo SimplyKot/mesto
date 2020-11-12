@@ -55,7 +55,7 @@ function setAuthorFields() {
   //console.log(data);
       authorName.textContent = data.name;
       authorInfo.textContent = data.about;
-      //authorAvatar.setAttribute('src', data.avatar);
+      authorAvatar.setAttribute('src', data.avatar);
 }
 
 //api.editProfile('Kotokot','Web student_v2');
@@ -90,7 +90,7 @@ function addCard(card,position) {
 
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
 //const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
-const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана',avatar:''},api);
+const info = new UserInfo({name:'', about:'',avatar:''},api);
 
 // info.setUserInfo({name:'Test', about:'Проверка локального апдейта'})
 // console.log(info.getUserInfo());
@@ -131,7 +131,7 @@ function addImageAddHandler(cardValues) {
 
 }
 function editAuthorHandler(infoValues) {
-  console.log(infoValues);
+  //console.log(infoValues);
   api.editProfile(infoValues)
   .then((data) =>{
     //console.log(data);

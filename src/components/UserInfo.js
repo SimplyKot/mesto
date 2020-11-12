@@ -14,6 +14,10 @@ export default class UserInfo {
     this._id=_id;
   }
 
+  getUserId() {
+    return (this._id);
+  }
+
   setUserInfo({name,about}) {
     //console.log(name, about, avatar);
     this._name = name;

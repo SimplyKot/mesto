@@ -40,11 +40,12 @@ const api = new Api({
 //Получаем с сервера и отображаем первоначальный массив карточек
 api.getInitialCards().then((data) => {
   const items = data.map(card => {
-    return {
-      name : card.name,
-      link: card.link,
-      likes: card.likes
-    }
+    return card
+    //   name : card.name,
+    //   link: card.link,
+    //   likes: card.likes,
+
+    // }
   });
   //console.log(items);
   const cardSectionContent = new Section({items:items, renderer:addCard},'.cards');
@@ -73,20 +74,6 @@ function handleCardClick()
   imagePopup.open(this._card.name,this._card.link);
 }
 
-function addCard(card,position) {
-  //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
-  //'start' -  добавление в начало списка
-  //Любую другое значение - в конец
-  
-  const cardFormClass = new Card(card,'#card-template',handleCardClick);
-
-  if (position != 'start') {
-    cardsList.append(cardFormClass.getCard());
-  }
-  else {
-    cardsList.prepend(cardFormClass.getCard());
-  }
-}
 
 
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
@@ -105,6 +92,24 @@ api.getUserInfo()
     //console.log(info.getUserInfo());
   })
   .then(() => setAuthorFields())
+
+  function addCard(card,position) {
+    //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
+    //'start' -  добавление в начало списка
+    //Любую другое значение - в конец
+    
+    
+    const cardFormClass = new Card(card,'#card-template',handleCardClick,info.getUserId());
+  
+    if (position != 'start') {
+      cardsList.append(cardFormClass.getCard());
+    }
+    else {
+      cardsList.prepend(cardFormClass.getCard());
+    }
+  }
+  
+
 
 const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
 editButton.addEventListener('click', evt => {

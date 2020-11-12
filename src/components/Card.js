@@ -1,6 +1,6 @@
 export default class Card {
 
-  constructor(card, template, handleCardClick) {
+  constructor(card, template, handleCardClick,id) {
     this._card = card;
     this._imagePopup = document.querySelector('#image');
     this._imagePopupPicture = this._imagePopup.querySelector('.popup__image');
@@ -9,6 +9,7 @@ export default class Card {
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._cardLikes = this._cardElement.querySelector('.card__likes');
+    this._userId = id;
     this._handleCardClick = handleCardClick;
   }
 
@@ -30,8 +31,14 @@ export default class Card {
     this._cardElement.querySelector('.card__like-button').addEventListener('click', this._handleLikeButton);
   }
 
+  _deletePosibility() {
+    console.log(this._card.owner._id == this._userId);
+    //eturn this._card.owner._id==this._userId?true:false;
+  }
+
   getCard() {
     //console.log(this._card);
+    this._deletePosibility();
     this._cardImage.setAttribute('src', this._card.link);
     this._cardImage.setAttribute('alt', this._card.name);
     this._cardElement.querySelector('.card__name').textContent = this._card.name;

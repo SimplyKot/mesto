@@ -50,10 +50,6 @@ api.getInitialCards().then((data) => {
   cardSectionContent.renderAllItems();
 });
 
-
-
-
-
 function setAuthorFields() {
   const data = info.getUserInfo();
   //console.log(data);
@@ -91,13 +87,14 @@ function addCard(card,position) {
   }
 }
 
-//FIXME: Здесь засада какая-то
 
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
 //const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
 const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана',avatar:''},api);
-info.setUserInfo({name:'Test', about:'Проверка локального апдейта'})
-console.log(info.getUserInfo());
+
+// info.setUserInfo({name:'Test', about:'Проверка локального апдейта'})
+// console.log(info.getUserInfo());
+
 // Получаем с сервера информацию о пользователе
 api.getUserInfo()
   .then((res) => {
@@ -129,10 +126,15 @@ function addImageAddHandler(cardValues) {
 }
 function editAuthorHandler(infoValues) {
   console.log(infoValues);
-  authorName.textContent = infoValues.name;
-  authorInfo.textContent = infoValues.about;
-  info.setUserInfo(infoValues);
-  setAuthorFields();
+  api.editProfile(infoValues)
+  .then((data) =>{
+    console.log(data);
+    authorName.textContent = data.name;
+    authorInfo.textContent = data.about;
+    info.setUserInfo(infoValues);
+    setAuthorFields();
+  })
+  
   authorSection.close();
 }
 

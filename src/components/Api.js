@@ -38,13 +38,13 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
-  editProfile(name, about) {
+  editProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-    name: name,
-    about: about
+    name: data.name,
+    about: data.about
   })
 }).then((res) => {
   if (!res.ok) {

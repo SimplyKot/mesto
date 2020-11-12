@@ -17,7 +17,7 @@ const addButton = document.querySelector('.profile__add-button');
 const authorPopup = document.querySelector('#author');
 const authorPopupForm = authorPopup.querySelector('.popup__content')
 const inputNameField = authorPopupForm.querySelector('input[name=name]');
-const inputInfoField = authorPopupForm.querySelector('input[name=info]');
+const inputInfoField = authorPopupForm.querySelector('input[name=about]');
 
 const profile = document.querySelector('.profile__text');
 const authorAvatar = document.querySelector('.profile__avatar');
@@ -55,16 +55,14 @@ api.getInitialCards().then((data) => {
 
 
 function setAuthorFields() {
-  const data = Info.getUserInfo();
+  const data = info.getUserInfo();
   //console.log(data);
       authorName.textContent = data.name;
       authorInfo.textContent = data.about;
-      authorAvatar.setAttribute('src', data.avatar);
+      //authorAvatar.setAttribute('src', data.avatar);
 }
 
-//api.editProfile('Kot','Web student_v1');
-
-
+//api.editProfile('Kotokot','Web student_v2');
 
 // function setAuthorFields() {
 //   const userInfo = Info.getUserInfo();
@@ -96,28 +94,21 @@ function addCard(card,position) {
 //FIXME: Здесь засада какая-то
 
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
-const Info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
-
+//const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
+const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана',avatar:''},api);
+info.setUserInfo({name:'Test', about:'Проверка локального апдейта'})
+console.log(info.getUserInfo());
 // Получаем с сервера информацию о пользователе
-api
-  .getUserInfo()
-  .then((data) => {
-    // Обновляем имя и описание пользователя в классе
-    Info.setUserInfo({name:data.name, about:data.about, avatar:data.avatar});
-    // Обновляем аватар пользователя в классе
-    Info.setUserAvatar({avatar:data.avatar})
-  });
-
-// Выводим в консоль экземпляр класса
-  console.log(Info);
-// Выводим в коснсоль вывод метода получени данных
-  console.log(Info.getUserInfo());
-
-setAuthorFields();
+api.getUserInfo()
+  .then((res) => {
+    info.setUserInfo(res);
+    info.setUserAvatar(res)
+  })
+  .then(() => setAuthorFields())
 
 const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
 editButton.addEventListener('click', evt => {
-  const currentInfo = Info.getUserInfo();
+  const currentInfo = info.getUserInfo();
   inputNameField.value=currentInfo.name;
   inputInfoField.value=currentInfo.about;
   authorSection.open()}
@@ -132,23 +123,15 @@ formList.forEach((form)=>{
   formValidator.enableValidation();
 });
 
-// console.log(cards);
-// console.log(oldCards);
-// const cardSectionContentNew = new Section({items:cards, renderer:addCard},'.cards');
-// const cardSectionContent = new Section({items:oldCards, renderer:addCard},'.cards');
-// //console.log(cardSectionContent);
-// cardSectionContent.renderAllItems();
-
 function addImageAddHandler(cardValues) {
   addCard(cardValues,'start');
   imageSection.close();
 }
-
 function editAuthorHandler(infoValues) {
-  //console.log(infoValues);
+  console.log(infoValues);
   authorName.textContent = infoValues.name;
   authorInfo.textContent = infoValues.about;
-  Info.setUserInfo(infoValues);
+  info.setUserInfo(infoValues);
   setAuthorFields();
   authorSection.close();
 }

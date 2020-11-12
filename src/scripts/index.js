@@ -123,12 +123,13 @@ formList.forEach((form)=>{
 function addImageAddHandler(cardValues) {
   addCard(cardValues,'start');
   imageSection.close();
+
 }
 function editAuthorHandler(infoValues) {
   console.log(infoValues);
   api.editProfile(infoValues)
   .then((data) =>{
-    console.log(data);
+    //console.log(data);
     authorName.textContent = data.name;
     authorInfo.textContent = data.about;
     info.setUserInfo(infoValues);
@@ -138,5 +139,9 @@ function editAuthorHandler(infoValues) {
   authorSection.close();
 }
 
+api.addCard({name:'Карелия',link:'https://unsplash.com/photos/rCoHRvWdegE/download?force=true&w=640'})
+    .then((res)=>{
+        addCard(res,'start');
+    });
 
-
+//addCard({name:'Карелия',link:'https://unsplash.com/photos/UKiGbKQVPpI/download?force=true&w=640'},'start');

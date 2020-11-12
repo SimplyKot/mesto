@@ -56,4 +56,24 @@ return res.json();
   console.log(err);
 }); 
   }
+
+  addCard(data) {
+    //console.log(data);
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+      name: data.name,
+      link: data.link
+    })
+  }).then((res) => {
+    if (!res.ok) {
+      return Promise.reject('Server error');
+  }
+  return res.json();
+  })
+  .catch(err => {
+    console.log(err);
+  }); 
+  }
 }

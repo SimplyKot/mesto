@@ -85,14 +85,47 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject("Server error");
-      }
-      return res.json();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject("Server error");
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  // Атрибут action со значением DELETE снимает лайк
+  setLike(id, action = "") {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: action == "DELETE" ? "DELETE" : "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject("Server error");
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // unsetLike(id){
+  //   return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   })
+  //   .then((res) => {
+  //     if (!res.ok) {
+  //       return Promise.reject("Server error");
+  //     }
+  //     return res.json();
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
 }

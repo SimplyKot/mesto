@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(card, template, handleCardClick, handleCardDelete, id) {
+  constructor(card, template, handleCardClick, handleCardDelete, handleCardLike, id) {
     this._card = card;
     this._imagePopup = document.querySelector("#image");
     this._imagePopupPicture = this._imagePopup.querySelector(".popup__image");
@@ -9,11 +9,15 @@ export default class Card {
     this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector(".card__image");
+    this._cardLike = this._cardElement.querySelector(".card__like-button");
     this._cardLikes = this._cardElement.querySelector(".card__likes");
     this._cardDelete = this._cardElement.querySelector(".card__delete-button");
     this._userId = id;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
+    this._liked = this._card.likes.some(id => {id == this._userId});
+    console.log(this._liked);
   }
 
   _deleteCard() {
@@ -42,7 +46,10 @@ export default class Card {
 
     this._cardElement
       .querySelector(".card__like-button")
-      .addEventListener("click", this._handleLikeButton);
+      .addEventListener("click", (evt) => {
+        this._handleCardLike(this._card._id,'add')
+        .then(this._handleLikeButton(evt)); 
+      });
   }
 
   _isOwner() {

@@ -78,6 +78,10 @@ function handleCardDelete(id) {
   return api.deleteCard(id)
 }
 
+function handleCardLike(id,action) {
+  return api.setLike(id,action)
+}
+
 // Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
 //const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
 const info = new UserInfo({name:'', about:'',avatar:'',id:''},api);
@@ -101,7 +105,7 @@ api.getUserInfo()
     //Любую другое значение - в конец
     
     
-    const cardFormClass = new Card(card,'#card-template',handleCardClick,handleCardDelete,info.getUserId());
+    const cardFormClass = new Card(card,'#card-template',handleCardClick,handleCardDelete,handleCardLike,info.getUserId());
   
     if (position != 'start') {
       cardsList.append(cardFormClass.getCard());

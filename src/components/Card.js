@@ -57,10 +57,6 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", (evt) => {
-        //FIXME: Тут вызываем форму удаления
-        //this._deletePopup.classList.add('popup_opened');
-        //this._deleteCard().then(this._handleTrashButton(evt));
-        //console.log(this._card._id);
         this._handleCardDelete(this._card._id);
       });
 

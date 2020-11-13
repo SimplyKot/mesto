@@ -9,7 +9,6 @@
 
 .profile__edit-avatar:hover {
   background-color: rgba(0, 0, 0, 0.5);
-  /* transition: 1s; */
 }
 
 .profile__edit-avatar:before {

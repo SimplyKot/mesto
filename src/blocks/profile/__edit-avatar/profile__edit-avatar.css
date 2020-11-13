@@ -4,22 +4,26 @@
   height: 120px;
   cursor: pointer;
   border-radius: 50%;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .profile__edit-avatar:hover {
   background-color: rgba(0, 0, 0, 0.5);
-  /* transition: 1s; */
+  transition: 0.5s;
 }
 
-.profile__edit-avatar:before {
+.profile__edit-avatar:before{
   content: url(../../../images/editButtonAvatar.svg);
   margin: 47px 0 0 47px;
   position: absolute;
-  opacity: 0;
-  transition: 1.5s;
+  opacity:0;
+  transition: 0.5s;
 }
 
-.profile__edit-avatar:hover:before {
+.profile__edit-avatar:hover:before{
+  content: url(../../../images/editButtonAvatar.svg);
+  margin: 47px 0 0 47px;
+  position: absolute;
   opacity: 1;
+  transition: 0.5s;
 }

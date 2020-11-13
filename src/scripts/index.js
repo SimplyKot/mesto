@@ -127,10 +127,12 @@ editButton.addEventListener("click", (evt) => {
 });
 
 function updateAvararHandler(data) {
-  api.updateAvatar(data).then((res) => {
-    authorAvatar.setAttribute("src", data.link);
+  api
+    .updateAvatar(data)
+    .then((res) => {
+      authorAvatar.setAttribute("src", data.link);
     })
-    .then(()=>avatarSection.close());
+    .then(() => avatarSection.close());
 }
 
 const avatarSection = new PopupWithForm({
@@ -152,19 +154,21 @@ formList.forEach((form) => {
 });
 
 function addImageAddHandler(cardValues) {
-  api.addCard(cardValues).then((res) => {
-    addCard(res, "start");
-  });
-  imageSection.close();
+  api
+    .addCard(cardValues)
+    .then((res) => {
+      addCard(res, "start");
+    })
+    .finally(() => imageSection.close());
 }
 function editAuthorHandler(infoValues) {
-  api.editProfile(infoValues).then((data) => {
-    authorName.textContent = data.name;
-    authorInfo.textContent = data.about;
-    info.setUserInfo(infoValues);
-    setAuthorFields();
-  })
-  .finally(() => authorSection.close());
-
-  
+  api
+    .editProfile(infoValues)
+    .then((data) => {
+      authorName.textContent = data.name;
+      authorInfo.textContent = data.about;
+      info.setUserInfo(infoValues);
+      setAuthorFields();
+    })
+    .finally(() => authorSection.close());
 }

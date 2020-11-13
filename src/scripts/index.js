@@ -1,6 +1,6 @@
 import "../pages/index.css";
 
-import { validationConfig as config } from "./data.js";
+import {validationConfig as config, connectConfig as connect } from "./data.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -28,13 +28,7 @@ const authorInfo = profile.querySelector(".profile__info");
 const cardsList = document.querySelector(".cards__list");
 //const avatarPopup = document.querySelector("#avatar");
 
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
-  headers: {
-    authorization: "5b28e3f6-a4ef-488b-b893-2830e6e47a17",
-    "Content-Type": "application/json",
-  },
-});
+const api = new Api(connect);
 
 //Получаем с сервера и отображаем первоначальный массив карточек
 api.getInitialCards().then((data) => {
@@ -59,7 +53,6 @@ function handleCardClick() {
   const imagePopup = new PopupWithImage("#image");
   imagePopup.open(this._card.name, this._card.link);
 }
-
 function handleCardDelete(id) {
   return api.deleteCard(id);
 }
@@ -127,12 +120,10 @@ editButton.addEventListener("click", (evt) => {
 });
 
 function updateAvararHandler(data) {
-  api
-    .updateAvatar(data)
-    .then((res) => {
-      authorAvatar.setAttribute("src", data.link);
+  api.updateAvatar(data).then((res) => {
+    authorAvatar.setAttribute("src", data.link);
     })
-    .then(() => avatarSection.close());
+    .then(()=>avatarSection.close());
 }
 
 const avatarSection = new PopupWithForm({
@@ -154,21 +145,18 @@ formList.forEach((form) => {
 });
 
 function addImageAddHandler(cardValues) {
-  api
-    .addCard(cardValues)
-    .then((res) => {
-      addCard(res, "start");
-    })
-    .finally(() => imageSection.close());
+  api.addCard(cardValues).then((res) => {
+    addCard(res, "start");
+  });
+  imageSection.close();
 }
 function editAuthorHandler(infoValues) {
-  api
-    .editProfile(infoValues)
-    .then((data) => {
-      authorName.textContent = data.name;
-      authorInfo.textContent = data.about;
-      info.setUserInfo(infoValues);
-      setAuthorFields();
-    })
-    .finally(() => authorSection.close());
+  api.editProfile(infoValues).then((data) => {
+    authorName.textContent = data.name;
+    authorInfo.textContent = data.about;
+    info.setUserInfo(infoValues);
+    setAuthorFields();
+  });
+
+  authorSection.close();
 }

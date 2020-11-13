@@ -112,4 +112,24 @@ export default class Api {
         console.log(err);
       });
   }
+
+  updateAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.link,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          //console.log(res);
+          return Promise.reject("Server error");
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }

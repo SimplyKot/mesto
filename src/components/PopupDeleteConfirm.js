@@ -8,6 +8,10 @@ export default class PopupWDeleteConfirm extends Popup {
     this._id = id;
   }
 
+  setId(id) {
+    this._id =id;
+  }
+
   close() {
     this._formElement = this._popup.querySelector(".popup__content");
     this._formElement.reset();
@@ -23,11 +27,13 @@ export default class PopupWDeleteConfirm extends Popup {
         this._submitHandler(this._id)
           .then((res) => {
             document.getElementById(this._id).remove();
+            this._id ='';
           })
           //.then(()=>this._card.handleTrashButton())
           .catch((err) => console.log("Произошла ошибка: ", err))
           .finally(this.close())
       );
+      
     });
     super._setEventListeners();
   }

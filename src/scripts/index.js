@@ -78,9 +78,9 @@ function handleCardDelete(id)
 {
   return api.deleteCard(id)
 }
-
+const deletePopup = new PopupWDeleteConfirm({popup:'#delete', id: '', submitHandler: handleCardDelete});
 function openPopupCardDelete(cardId) {
-  const deletePopup = new PopupWDeleteConfirm({popup:'#delete', id: cardId, submitHandler: handleCardDelete});
+  deletePopup.setId(cardId);
   deletePopup.open();
   //return api.deleteCard(id)
 }

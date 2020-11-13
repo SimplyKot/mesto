@@ -13,6 +13,10 @@ export default class Card {
     this._imagePopupTitle = this._imagePopup.querySelector(
       ".popup__image-title"
     );
+
+    this._deletePopup = document.querySelector("#delete");
+    //console.log(this._deletePopup);
+
     this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImage = this._cardElement.querySelector(".card__image");
@@ -35,12 +39,13 @@ export default class Card {
     //console.log(this._card.likes.length);
   }
 
-  _deleteCard() {
-    //console.log("Удалим это:", this._card._id);
-    return this._handleCardDelete(this._card._id);
-  }
+  // _deleteCard() {
+  //   //console.log("Удалим это:", this._card._id);
+  //   return this._handleCardDelete(this._card._id);
+  // }
 
   _handleTrashButton(evt) {
+    console.log("Типа удвляем карточку с сервера");
     evt.target.closest(".card").remove();
   }
 
@@ -52,7 +57,11 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", (evt) => {
-        this._deleteCard().then(this._handleTrashButton(evt));
+        //FIXME: Тут вызываем форму удаления
+        //this._deletePopup.classList.add('popup_opened');
+        //this._deleteCard().then(this._handleTrashButton(evt));
+        //console.log(this._card._id);
+        this._handleCardDelete(this._card._id);
       });
 
     this._cardImage.addEventListener("click", () => {
@@ -64,7 +73,9 @@ export default class Card {
       .addEventListener("click", (evt) => {
         const action = !this._liked ? "ADD" : "DELETE";
         this._handleCardLike(this._card._id, action)
-          .then((res) => {this._updateCard(res)})
+          .then((res) => {
+            this._updateCard(res);
+          })
           .then(this._handleLikeButton(evt));
       });
   }
@@ -79,6 +90,7 @@ export default class Card {
     if (!this._isOwner()) {
       this._cardDelete.classList.add("card__delete-button_disabled");
     }
+    this._cardElement.querySelector(".card").id = this._card._id;
     this._cardImage.setAttribute("src", this._card.link);
     this._cardImage.setAttribute("alt", this._card.name);
     this._cardElement.querySelector(

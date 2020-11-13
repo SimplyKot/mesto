@@ -9,6 +9,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWIthForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupWDeleteConfirm from '../components/PopupDeleteConfirm';
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 const editButton = document.querySelector('.profile__edit-button');
@@ -73,9 +74,16 @@ function handleCardClick()
   const imagePopup = new PopupWithImage('#image');
   imagePopup.open(this._card.name,this._card.link);
 }
-
-function handleCardDelete(id) {
+function handleCardDelete(id)
+{
+  console.log(id);
   return api.deleteCard(id)
+}
+
+function openPopupCardDelete(cardId) {
+  const deletePopup = new PopupWDeleteConfirm({popup:'#delete', id: cardId, submitHandler: handleCardDelete});
+  deletePopup.open();
+  //return api.deleteCard(id)
 }
 
 function handleCardLike(id,action) {
@@ -105,7 +113,7 @@ api.getUserInfo()
     //Любую другое значение - в конец
     
     
-    const cardFormClass = new Card(card,'#card-template',handleCardClick,handleCardDelete,handleCardLike,info.getUserId());
+    const cardFormClass = new Card(card,'#card-template',handleCardClick,openPopupCardDelete,handleCardLike,info.getUserId());
   
     if (position != 'start') {
       cardsList.append(cardFormClass.getCard());
@@ -118,12 +126,16 @@ api.getUserInfo()
 
 
 const authorSection = new PopupWithForm({popup:'#author',submitHandler:editAuthorHandler});
+
 editButton.addEventListener('click', evt => {
   const currentInfo = info.getUserInfo();
   inputNameField.value=currentInfo.name;
   inputInfoField.value=currentInfo.about;
   authorSection.open()}
   );
+
+//const deleteSection = new PopupWithForm({popup:'#delete',submitHandler:handleCardDelete});
+
 
 const imageSection = new PopupWithForm({popup:'#place',submitHandler:addImageAddHandler});
 addButton.addEventListener('click', evt => imageSection.open());

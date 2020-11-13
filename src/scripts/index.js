@@ -26,7 +26,7 @@ const authorName = profile.querySelector(".profile__name");
 const authorInfo = profile.querySelector(".profile__info");
 
 const cardsList = document.querySelector(".cards__list");
-const avatarPopup = document.querySelector("#avatar");
+//const avatarPopup = document.querySelector("#avatar");
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
@@ -59,6 +59,7 @@ function handleCardClick() {
   const imagePopup = new PopupWithImage("#image");
   imagePopup.open(this._card.name, this._card.link);
 }
+
 function handleCardDelete(id) {
   return api.deleteCard(id);
 }
@@ -162,7 +163,8 @@ function editAuthorHandler(infoValues) {
     authorInfo.textContent = data.about;
     info.setUserInfo(infoValues);
     setAuthorFields();
-  });
+  })
+  .finally(() => authorSection.close());
 
-  authorSection.close();
+  
 }

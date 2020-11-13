@@ -15,7 +15,7 @@ export default class Card {
     );
 
     this._deletePopup = document.querySelector("#delete");
-    //console.log(this._deletePopup);
+   
 
     this._cardTemplate = document.querySelector(template).content;
     this._cardElement = this._cardTemplate.cloneNode(true);
@@ -28,24 +28,17 @@ export default class Card {
     this._handleCardDelete = handleCardDelete;
     this._handleCardLike = handleCardLike;
     this._liked = this._card.likes.some((like) => like._id == this._userId);
-    //console.log(this._liked);
+
   }
 
   _updateCard(data) {
-    //console.log(this._card.likes.length);
     this._card = data;
     this._liked = this._card.likes.some((like) => like._id == this._userId);
     this._cardLikes.textContent = this._card.likes.length;
-    //console.log(this._card.likes.length);
+
   }
 
-  // _deleteCard() {
-  //   //console.log("Удалим это:", this._card._id);
-  //   return this._handleCardDelete(this._card._id);
-  // }
-
   _handleTrashButton(evt) {
-    console.log("Типа удвляем карточку с сервера");
     evt.target.closest(".card").remove();
   }
 

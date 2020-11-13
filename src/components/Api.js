@@ -81,7 +81,6 @@ export default class Api {
   }
 
   deleteCard(id) {
-    console.log(id);
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
@@ -113,20 +112,4 @@ export default class Api {
         console.log(err);
       });
   }
-
-  // unsetLike(id){
-  //   return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //   })
-  //   .then((res) => {
-  //     if (!res.ok) {
-  //       return Promise.reject("Server error");
-  //     }
-  //     return res.json();
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
 }

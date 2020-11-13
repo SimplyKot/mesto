@@ -76,7 +76,6 @@ function handleCardClick()
 }
 function handleCardDelete(id)
 {
-  console.log(id);
   return api.deleteCard(id)
 }
 

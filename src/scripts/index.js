@@ -21,12 +21,12 @@ const inputInfoField = authorPopupForm.querySelector("input[name=about]");
 
 const profile = document.querySelector(".profile__text");
 const authorAvatar = document.querySelector(".profile__avatar");
+const editAvatar = document.querySelector(".profile__edit-avatar");
 const authorName = profile.querySelector(".profile__name");
 const authorInfo = profile.querySelector(".profile__info");
 
 const cardsList = document.querySelector(".cards__list");
 const avatarPopup = document.querySelector("#avatar");
-console.log(avatarPopup);
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
@@ -136,7 +136,7 @@ const avatarSection = new PopupWithForm({
   popup: "#avatar",
   submitHandler: updateAvararHandler,
 });
-authorAvatar.addEventListener("click", (evt) => avatarSection.open());
+editAvatar.addEventListener("click", (evt) => avatarSection.open());
 
 const imageSection = new PopupWithForm({
   popup: "#place",

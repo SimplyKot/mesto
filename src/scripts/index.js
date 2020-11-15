@@ -1,6 +1,9 @@
 import "../pages/index.css";
 
-import {validationConfig as config, connectConfig as connect } from "./data.js";
+import {
+  validationConfig as config,
+  connectConfig as connect,
+} from "./data.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -26,21 +29,56 @@ const authorName = profile.querySelector(".profile__name");
 const authorInfo = profile.querySelector(".profile__info");
 
 const cardsList = document.querySelector(".cards__list");
-//const avatarPopup = document.querySelector("#avatar");
 
 const api = new Api(connect);
 
-//Получаем с сервера и отображаем первоначальный массив карточек
-api.getInitialCards().then((data) => {
-  const items = data.map((card) => {
-    return card;
+// Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
+//const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
+const info = new UserInfo({ name: "", about: "", avatar: "", id: "" }, api);
+
+// Получаем с сервера информацию о пользователе
+function userDataPromise() {
+  return api.getUserInfo().then((res) => {
+    info.setUserInfo(res);
+    info.setUserAvatar(res);
+    info.setUserId(res);
+    return info;
   });
-  const cardSectionContent = new Section(
-    { items: items, renderer: addCard },
-    ".cards"
-  );
-  cardSectionContent.renderAllItems();
-});
+  //.then(() => setAuthorFields());
+}
+//Получаем с сервера и отображаем первоначальный массив карточек
+function getInitialCardsPromise() {
+  return api.getInitialCards().then((data) => {
+    return data;
+    // const items = data.map((card) => {
+    //   return card;
+    // });
+    // const cardSectionContent = new Section(
+    //   { items: items, renderer: addCard },
+    //   ".cards"
+    // );
+    //cardSectionContent.renderAllItems();
+  });
+}
+
+Promise.all([userDataPromise(), getInitialCardsPromise()])
+  .then(([userData, initialCards]) => {
+    setAuthorFields();
+    return initialCards;
+  })
+  .then((data) => {
+    const items = data.map((card) => {
+      return card;
+    });
+    const cardSectionContent = new Section(
+      { items: items, renderer: addCard },
+      ".cards"
+    );
+    cardSectionContent.renderAllItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 function setAuthorFields() {
   const data = info.getUserInfo();
@@ -71,20 +109,6 @@ function openPopupCardDelete(cardId) {
 function handleCardLike(id, action) {
   return api.setLike(id, action);
 }
-
-// Создаем новый экземпляр класса, чтобы можно было обратьиться к нему из промиса
-//const info = new UserInfo({name:'Жак Ив Кусто', about:'Исследователь океана'},api);
-const info = new UserInfo({ name: "", about: "", avatar: "", id: "" }, api);
-
-// Получаем с сервера информацию о пользователе
-api
-  .getUserInfo()
-  .then((res) => {
-    info.setUserInfo(res);
-    info.setUserAvatar(res);
-    info.setUserId(res);
-  })
-  .then(() => setAuthorFields());
 
 function addCard(card, position) {
   //Второй аргумент необязательный. Он отвечает за место в которое карточка будет добавлена:
@@ -120,10 +144,12 @@ editButton.addEventListener("click", (evt) => {
 });
 
 function updateAvararHandler(data) {
-  api.updateAvatar(data).then((res) => {
-    authorAvatar.setAttribute("src", data.link);
+  api
+    .updateAvatar(data)
+    .then((res) => {
+      authorAvatar.setAttribute("src", data.link);
     })
-    .then(()=>avatarSection.close());
+    .then(() => avatarSection.close());
 }
 
 const avatarSection = new PopupWithForm({

@@ -24,9 +24,8 @@
       <main>
         <section class="profile">
           <div class="profile__avatar-container">
-            <img class="profile__avatar" src="#" alt="Фотография автора">
+            <img class="profile__avatar" src="#" alt="Фотография автора" />
             <div class="profile__edit-avatar"></div>
-
           </div>
           <div class="profile__text">
             <div class="profile__name-holder">
@@ -116,15 +115,17 @@
       </section>
 
       <section class="popup popup_dark" id="image">
-        <div class="popup__image-container">
-          <div class="popup__image-card">
-            <button
-              type="button"
-              class="popup__close-button popup__close-button_size_small"
-            ></button>
+        <div class="popup__image-card">
+          <button
+            type="button"
+            class="popup__close-button popup__close-button_size_small"
+          ></button>
+          <figure class="popup__image-container">
             <img class="popup__image" />
-            <h2 class="popup__image-title"></h2>
-          </div>
+            <figcaption>
+              <h2 class="popup__image-title"></h2>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

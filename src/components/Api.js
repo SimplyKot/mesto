@@ -7,7 +7,6 @@ export default class Api {
   _transmit(url, method, body = "") {
     const localParam = { method: method, headers: this._headers };
     if (body) {
-      console.log(body);
       localParam.body = JSON.stringify(body);
     }
 

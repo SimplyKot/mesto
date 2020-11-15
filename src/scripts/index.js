@@ -173,8 +173,8 @@ formList.forEach((form) => {
 function addImageAddHandler(cardValues) {
   api.addCard(cardValues).then((res) => {
     addCard(res, "start");
-  });
-  imageSection.close();
+  }).then(()=>imageSection.close());
+
 }
 function editAuthorHandler(infoValues) {
   api.editProfile(infoValues).then((data) => {
@@ -182,7 +182,6 @@ function editAuthorHandler(infoValues) {
     authorInfo.textContent = data.about;
     info.setUserInfo(infoValues);
     setAuthorFields();
-  });
-
-  authorSection.close();
+  })
+  .then(()=>authorSection.close());
 }
